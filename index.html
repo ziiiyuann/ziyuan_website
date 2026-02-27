@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ziyuan Wang | Business Analytics Portfolio</title>
+  <title>Ziyuan Wang | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="pixel-noise" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#home">Ziyuan Wang</a>
@@ -17,7 +19,6 @@
       <nav class="nav" id="nav">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
@@ -26,122 +27,98 @@
   </header>
 
   <main id="home">
-    <section class="hero">
+    <section class="hero section">
       <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Business Analyst</p>
-          <h1>Applying data and software to real business problems.</h1>
-          <p class="lead">
-            I am a penultimate Business Analytics student at NUS with internship experience in application development,
-            BI dashboard migration, and full-stack web delivery.
-          </p>
+        <div class="panel reveal">
+          <p class="eyebrow">PLAYER 1</p>
+          <h1>Builds Data + Tech Solutions</h1>
+          <p class="lead">[Write a 2 to 3 sentence intro about what you do and what kind of roles you are targeting.]</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#experience">View Experience</a>
-            <a class="btn btn-secondary" href="#projects">View Projects</a>
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact</a>
           </div>
         </div>
-        <div class="hero-card">
-          <p><strong>Current focus:</strong> Python and TM1py automation, FP&A reporting, and business intelligence workflows.</p>
-          <p><strong>Target roles:</strong> Business Analyst, Analytics Engineer, Application Developer.</p>
-          <p class="status"><span></span> Open to internship and full-time opportunities</p>
-        </div>
+
+        <aside class="panel stats reveal">
+          <h2>Character Stats</h2>
+          <ul class="stat-list">
+            <li><span>Role</span><strong>[Your Primary Role]</strong></li>
+            <li><span>Focus</span><strong>[Your Current Focus Area]</strong></li>
+            <li><span>Location</span><strong>[Your City / Country]</strong></li>
+            <li><span>Status</span><strong>[Open to Opportunities]</strong></li>
+          </ul>
+        </aside>
       </div>
     </section>
 
     <section id="about" class="section">
-      <div class="container narrow">
-        <h2>About</h2>
-        <p>
-          Hello, I am Ziyuan! I enjoy building practical data-driven solutions that improve decisions and operations.
-          My work spans analytics, automation, and product development, with hands-on experience across Python,
-          Power BI, and modern web technologies.
-        </p>
+      <div class="container">
+        <div class="panel reveal">
+          <h2>About</h2>
+          <p>[Write your short story here: background, strengths, and the kind of impact you want to create.]</p>
+        </div>
       </div>
     </section>
 
-    <section id="experience" class="section section-alt">
+    <section id="experience" class="section">
       <div class="container">
-        <h2>Work Experience</h2>
-        <div class="project-grid">
-          <article class="project-card reveal">
-            <h3>Application Developer Intern</h3>
-            <p><strong>ITLink Business Solutions (Singapore)</strong><br />Jan 2026 - Present</p>
+        <h2>Experience Log</h2>
+        <div class="card-grid">
+          <article class="pixel-card reveal">
+            <p class="card-meta">[Start Date] - [End Date]</p>
+            <h3>[Job Title]</h3>
+            <p class="card-sub">[Company Name]</p>
             <ul>
-              <li>Developed and optimized Python/TM1py automation scripts for IBM TM1 FP&A cubes.</li>
-              <li>Built and validated Power BI and Excel databases and dashboards for analysis.</li>
-              <li>Supported requirements compliance and tender documentation for client-facing projects.</li>
+              <li>[Impact bullet point with measurable result]</li>
+              <li>[Technical contribution bullet point]</li>
+              <li>[Business/strategy contribution bullet point]</li>
             </ul>
           </article>
-          <article class="project-card reveal">
-            <h3>Full-stack Developer Intern</h3>
-            <p><strong>Ceus Capital Pte. Ltd.</strong><br />Jun 2025 - Sep 2025</p>
+          <article class="pixel-card reveal">
+            <p class="card-meta">[Start Date] - [End Date]</p>
+            <h3>[Job Title]</h3>
+            <p class="card-sub">[Company Name]</p>
             <ul>
-              <li>Implemented frontend and backend features for Quickly.</li>
-              <li>Worked with TypeScript, React, Fastify, Prisma, Typesense, Matomo, PostgreSQL, and JWT.</li>
-              <li>Delivered sprint-based product features in a full-stack team setting.</li>
+              <li>[Impact bullet point with measurable result]</li>
+              <li>[Technical contribution bullet point]</li>
+              <li>[Business/strategy contribution bullet point]</li>
             </ul>
           </article>
-          <article class="project-card reveal">
-            <h3>Leadership and Activities</h3>
-            <p><strong>NUS Sheares Hall / GLHF Singapore</strong><br />2023 - Present</p>
+          <article class="pixel-card reveal">
+            <p class="card-meta">[Start Date] - [End Date]</p>
+            <h3>[Leadership / Activity]</h3>
+            <p class="card-sub">[Organization Name]</p>
             <ul>
-              <li>Treasurer and Basketball Captain at NUS Sheares Hall.</li>
-              <li>Artist Liaison Officer and Disc Jockey at GLHF Singapore.</li>
-              <li>Managed contracts, logistics, and stakeholder coordination for events.</li>
+              <li>[Leadership contribution and ownership]</li>
+              <li>[Teamwork/stakeholder management contribution]</li>
+              <li>[Outcome or lesson learned]</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="education" class="section">
+    <section id="projects" class="section">
       <div class="container">
-        <h2>Education</h2>
-        <div class="project-grid">
-          <article class="project-card reveal">
-            <h3>National University of Singapore</h3>
-            <p><strong>BSc (Business Analytics)</strong><br />Aug 2023 - May 2027</p>
-            <ul>
-              <li>CAP: 4.43 / 5.00</li>
-              <li>Financial Analytics Specialization</li>
-              <li>Student Exchange Programme at The University of Hong Kong</li>
-            </ul>
+        <h2>Project Quests</h2>
+        <div class="card-grid">
+          <article class="pixel-card reveal">
+            <p class="card-meta">[Category]</p>
+            <h3>[Project Name]</h3>
+            <p>[Describe the problem, what you built, and the outcome in 2 to 3 sentences.]</p>
+            <a class="card-link" href="#">[GitHub / Demo Link]</a>
           </article>
-          <article class="project-card reveal">
-            <h3>Raffles Institution</h3>
-            <p><strong>GCE A Levels</strong><br />Jan 2015 - Dec 2020</p>
-            <ul>
-              <li>6-Year Integrated Programme (IP)</li>
-            </ul>
+          <article class="pixel-card reveal">
+            <p class="card-meta">[Category]</p>
+            <h3>[Project Name]</h3>
+            <p>[Describe the problem, what you built, and the outcome in 2 to 3 sentences.]</p>
+            <a class="card-link" href="#">[GitHub / Demo Link]</a>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section section-alt">
-      <div class="container">
-        <h2>Project Experience</h2>
-        <div class="project-grid">
-          <article class="project-card reveal">
-            <h3>IBM TM1 FP&A Performance Guarantee Maintenance</h3>
-            <p>
-              Assisted in resolving system software issues across workflows, web services, batch jobs,
-              configuration, and database components during the system warranty period.
-            </p>
-          </article>
-          <article class="project-card reveal">
-            <h3>Excel to Power BI Migration</h3>
-            <p>
-              Fully migrated FP&A dashboards from Excel to Power BI and engineered relational and
-              non-relational data models to support analytics needs.
-            </p>
-          </article>
-          <article class="project-card reveal">
-            <h3>Quickly Product Feature Sprints</h3>
-            <p>
-              Contributed to frontend and backend feature delivery in a production web application using
-              a modern TypeScript and PostgreSQL-based stack.
-            </p>
+          <article class="pixel-card reveal">
+            <p class="card-meta">[Category]</p>
+            <h3>[Project Name]</h3>
+            <p>[Describe the problem, what you built, and the outcome in 2 to 3 sentences.]</p>
+            <a class="card-link" href="#">[GitHub / Demo Link]</a>
           </article>
         </div>
       </div>
@@ -149,31 +126,34 @@
 
     <section id="skills" class="section">
       <div class="container">
-        <h2>Skills and Tools</h2>
-        <ul class="skill-list">
-          <li>Python</li>
-          <li>R</li>
-          <li>SQL</li>
-          <li>Java</li>
-          <li>TypeScript</li>
-          <li>HTML/CSS</li>
-          <li>Power BI</li>
-          <li>IBM TM1</li>
-          <li>Tableau</li>
-          <li>React</li>
-          <li>Git</li>
-          <li>Matomo</li>
+        <h2>Skill Inventory</h2>
+        <ul class="skill-list reveal">
+          <li>[Skill 1]</li>
+          <li>[Skill 2]</li>
+          <li>[Skill 3]</li>
+          <li>[Skill 4]</li>
+          <li>[Skill 5]</li>
+          <li>[Skill 6]</li>
+          <li>[Skill 7]</li>
+          <li>[Skill 8]</li>
+          <li>[Skill 9]</li>
+          <li>[Skill 10]</li>
+          <li>[Skill 11]</li>
+          <li>[Skill 12]</li>
         </ul>
       </div>
     </section>
 
-    <section id="contact" class="section section-alt">
-      <div class="container narrow">
-        <h2>Contact</h2>
-        <p>If you are hiring for analytics or developer roles, I would be glad to connect.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://www.linkedin.com/in/ziiiyuann/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="btn btn-secondary" href="tel:+6583502519">+65 8350 2519</a>
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="panel reveal">
+          <h2>Contact Portal</h2>
+          <p>[Add your preferred contact line here.]</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#">[LinkedIn URL]</a>
+            <a class="btn btn-secondary" href="#">[Email Address]</a>
+            <a class="btn btn-secondary" href="#">[GitHub URL]</a>
+          </div>
         </div>
       </div>
     </section>
