@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">Your Name</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+      <nav class="nav" id="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Portfolio</p>
+          <h1>I build clean, useful digital products.</h1>
+          <p class="lead">
+            I am a developer focused on simple user experiences, fast performance, and practical software.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <p>Currently working on Python bots and web apps.</p>
+          <p class="status"><span></span> Available for freelance work</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container narrow">
+        <h2>About</h2>
+        <p>
+          I enjoy turning ideas into reliable software. My workflow combines rapid prototyping with careful cleanup,
+          so projects ship quickly and stay maintainable.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects" class="section section-alt">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <h3>Joke Bot</h3>
+            <p>A Telegram bot that delivers random jokes with lightweight command handling.</p>
+            <a href="#" aria-label="Project link">View details</a>
+          </article>
+          <article class="project-card reveal">
+            <h3>Gym Assistant Bot</h3>
+            <p>Interactive gym guidance bot with personalized training suggestions.</p>
+            <a href="#" aria-label="Project link">View details</a>
+          </article>
+          <article class="project-card reveal">
+            <h3>Task Tracker</h3>
+            <p>Simple web app for daily task planning and progress tracking.</p>
+            <a href="#" aria-label="Project link">View details</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Skills</h2>
+        <ul class="skill-list">
+          <li>Python</li>
+          <li>JavaScript</li>
+          <li>HTML/CSS</li>
+          <li>SQL</li>
+          <li>API Integration</li>
+          <li>Automation</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+      <div class="container narrow">
+        <h2>Contact</h2>
+        <p>Want to collaborate? Send me a message.</p>
+        <a class="btn btn-primary" href="mailto:your.email@example.com">your.email@example.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
