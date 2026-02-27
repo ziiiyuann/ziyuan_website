@@ -1,6 +1,30 @@
-﻿const yearEl = document.getElementById("year");
+const yearEl = document.getElementById("year");
 if (yearEl) {
   yearEl.textContent = `(c) ${new Date().getFullYear()} Ziyuan Wang. All rights reserved.`;
+}
+
+const themeBtn = document.getElementById("themeBtn");
+const THEME_KEY = "portfolio-theme";
+
+function setTheme(theme) {
+  document.body.setAttribute("data-theme", theme);
+  if (themeBtn) {
+    themeBtn.textContent = `Theme: ${theme === "light" ? "Light" : "Dark"}`;
+  }
+}
+
+const savedTheme = localStorage.getItem(THEME_KEY);
+const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+const initialTheme = savedTheme || (systemPrefersLight ? "light" : "dark");
+setTheme(initialTheme);
+
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    const currentTheme = document.body.getAttribute("data-theme") === "light" ? "light" : "dark";
+    const nextTheme = currentTheme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    localStorage.setItem(THEME_KEY, nextTheme);
+  });
 }
 
 const menuBtn = document.getElementById("menuBtn");
