@@ -559,6 +559,111 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   font-size: 0.68rem;
 }
 
+.project-divider {
+  border: none;
+  border-top: 1px solid var(--line-soft);
+  margin: 1rem 0 0.9rem;
+}
+
+.score-tool {
+  margin-top: 0.8rem;
+}
+
+.scores-status {
+  margin: 0.55rem 0 0;
+  font-size: 0.88rem;
+}
+
+.scores-status.error {
+  color: #ff8d8d;
+}
+
+.scores-list {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.score-card {
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
+  padding: 0.65rem 0.75rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.score-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.score-head strong {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+}
+
+.score-head a {
+  font-size: 0.68rem;
+  color: var(--text);
+}
+
+.score-lines {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.score-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.score-line .score-num {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--text);
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.76rem;
+}
+
+.score-table th,
+.score-table td {
+  padding: 0.23rem 0.3rem;
+  text-align: right;
+}
+
+.score-table thead th {
+  border-bottom: 1px solid var(--line-soft);
+  font-weight: 600;
+  opacity: 0.88;
+}
+
+.score-table tbody tr + tr td {
+  border-top: 1px solid color-mix(in srgb, var(--line-soft) 70%, transparent);
+}
+
+.score-table th:first-child,
+.score-table td:first-child {
+  text-align: left;
+}
+
+.score-table .score-team {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.87rem;
+}
+
+.score-table .score-num {
+  font-weight: 700;
+}
+
 .project-head {
   display: flex;
   align-items: center;
@@ -630,6 +735,16 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   gap: 0.4rem;
 }
 
+.project-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card-link:hover {
+  transform: translateY(-1px);
+}
+
 .project-work {
   position: relative;
   overflow: hidden;
@@ -643,6 +758,21 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   inset: 0 auto 0 0;
   width: 4px;
   background: #4d73b8;
+}
+
+.project-fun {
+  position: relative;
+  overflow: hidden;
+  border-color: #cc6db0;
+  box-shadow: 3px 3px 0 color-mix(in srgb, #cc6db0 35%, var(--shadow));
+}
+
+.project-fun::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: #cc6db0;
 }
 
 .tag {

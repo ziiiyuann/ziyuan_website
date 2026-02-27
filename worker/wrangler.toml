@@ -1,0 +1,8 @@
+name = "ziyuan-scores-api"
+main = "src/index.js"
+compatibility_date = "2026-02-27"
+
+[vars]
+# Set to your GitHub Pages origin for stricter CORS, or keep "*" while testing.
+# Example: "https://ziiiyuann.github.io"
+ALLOW_ORIGIN = "*"

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basketball Reference Dupe | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">Fun Project</div>
+        <article class="panel reveal">
+          <p class="card-meta">Self</p>
+          <h1>Basketball Reference Dupe</h1>
+          <p>
+            This page is a placeholder for the full Basketball Reference Dupe case study.
+            You can replace this with architecture notes, screenshots, metrics, and your build decisions.
+          </p>
+          <p>
+            Suggested sections: project objective, data model, backend design, UI implementation,
+            and what you would improve in the next iteration.
+          </p>
+          <hr class="project-divider" />
+          <h2>Live Scores Demo</h2>
+          <p>
+            Click the button to fetch the latest scores scraped from Basketball Reference via your Cloudflare Worker.
+          </p>
+          <div class="score-tool">
+            <button
+              class="btn btn-primary"
+              id="fetchScoresBtn"
+              type="button"
+              data-endpoint="https://ziyuan-scores-api.ziiiyuann-scores.workers.dev/scores"
+            >
+              Fetch Latest Scores
+            </button>
+            <p id="scoresStatus" class="scores-status">
+              Please don't spam the button! Tokens are expensive.
+            </p>
+            <div id="scoresList" class="scores-list" aria-live="polite"></div>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="basketballScores.js"></script>
+</body>
+</html>
+
