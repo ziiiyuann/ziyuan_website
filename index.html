@@ -10,11 +10,22 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="pixel-noise" aria-hidden="true"></div>
+  <div class="stars" aria-hidden="true">
+    <span class="star s1"></span>
+    <span class="star s2"></span>
+    <span class="star s3"></span>
+    <span class="star s4"></span>
+    <span class="star s5"></span>
+    <span class="star s6"></span>
+  </div>
 
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#home">Ziyuan Wang</a>
+      <div class="hud-bars" aria-hidden="true">
+        <div class="bar"><span>EXP</span><i style="width:78%"></i></div>
+        <div class="bar"><span>CRT</span><i style="width:63%"></i></div>
+      </div>
       <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
       <nav class="nav" id="nav">
         <a href="#about">About</a>
@@ -29,23 +40,24 @@
   <main id="home">
     <section class="hero section">
       <div class="container hero-grid">
-        <div class="panel reveal">
-          <p class="eyebrow">PLAYER 1</p>
-          <h1>Builds Data + Tech Solutions</h1>
-          <p class="lead">[Write a 2 to 3 sentence intro about what you do and what kind of roles you are targeting.]</p>
+        <div class="hero-main panel reveal">
+          <p class="eyebrow">LEVEL 01 APPLICANT</p>
+          <h1>[Your One-Line Value Proposition]</h1>
+          <p class="lead">[Write a 2-3 sentence intro about what you build, what you are good at, and what roles you want.]</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn btn-secondary" href="#contact">Contact</a>
+            <a class="btn btn-primary" href="#projects">Start Quest</a>
+            <a class="btn btn-secondary" href="#contact">Open Contact</a>
           </div>
         </div>
 
-        <aside class="panel stats reveal">
-          <h2>Character Stats</h2>
+        <aside class="hero-side panel reveal">
+          <div class="pixel-avatar" aria-hidden="true"></div>
+          <h2>Character Sheet</h2>
           <ul class="stat-list">
-            <li><span>Role</span><strong>[Your Primary Role]</strong></li>
-            <li><span>Focus</span><strong>[Your Current Focus Area]</strong></li>
-            <li><span>Location</span><strong>[Your City / Country]</strong></li>
-            <li><span>Status</span><strong>[Open to Opportunities]</strong></li>
+            <li><span>CLASS</span><strong>[Your Role]</strong></li>
+            <li><span>SPECIALTY</span><strong>[Your Niche]</strong></li>
+            <li><span>BASE</span><strong>[Your Location]</strong></li>
+            <li><span>STATUS</span><strong>[Open to Opportunities]</strong></li>
           </ul>
         </aside>
       </div>
@@ -53,45 +65,45 @@
 
     <section id="about" class="section">
       <div class="container">
+        <div class="title-chip">Bio Log</div>
         <div class="panel reveal">
-          <h2>About</h2>
-          <p>[Write your short story here: background, strengths, and the kind of impact you want to create.]</p>
+          <p>[Add a short personal narrative: background, strengths, and what kind of problems you like solving.]</p>
         </div>
       </div>
     </section>
 
     <section id="experience" class="section">
       <div class="container">
-        <h2>Experience Log</h2>
+        <div class="title-chip">Experience Missions</div>
         <div class="card-grid">
           <article class="pixel-card reveal">
-            <p class="card-meta">[Start Date] - [End Date]</p>
-            <h3>[Job Title]</h3>
-            <p class="card-sub">[Company Name]</p>
+            <p class="card-meta">[Date] - [Date]</p>
+            <h3>[Role Title]</h3>
+            <p class="card-sub">[Company]</p>
             <ul>
-              <li>[Impact bullet point with measurable result]</li>
-              <li>[Technical contribution bullet point]</li>
-              <li>[Business/strategy contribution bullet point]</li>
+              <li>[Result-focused impact bullet]</li>
+              <li>[Technical/system contribution bullet]</li>
+              <li>[Business/communication contribution bullet]</li>
             </ul>
           </article>
           <article class="pixel-card reveal">
-            <p class="card-meta">[Start Date] - [End Date]</p>
-            <h3>[Job Title]</h3>
-            <p class="card-sub">[Company Name]</p>
+            <p class="card-meta">[Date] - [Date]</p>
+            <h3>[Role Title]</h3>
+            <p class="card-sub">[Company]</p>
             <ul>
-              <li>[Impact bullet point with measurable result]</li>
-              <li>[Technical contribution bullet point]</li>
-              <li>[Business/strategy contribution bullet point]</li>
+              <li>[Result-focused impact bullet]</li>
+              <li>[Technical/system contribution bullet]</li>
+              <li>[Business/communication contribution bullet]</li>
             </ul>
           </article>
           <article class="pixel-card reveal">
-            <p class="card-meta">[Start Date] - [End Date]</p>
+            <p class="card-meta">[Date] - [Date]</p>
             <h3>[Leadership / Activity]</h3>
-            <p class="card-sub">[Organization Name]</p>
+            <p class="card-sub">[Organization]</p>
             <ul>
-              <li>[Leadership contribution and ownership]</li>
-              <li>[Teamwork/stakeholder management contribution]</li>
-              <li>[Outcome or lesson learned]</li>
+              <li>[Ownership / execution bullet]</li>
+              <li>[Stakeholder/teamwork bullet]</li>
+              <li>[Outcome / lesson bullet]</li>
             </ul>
           </article>
         </div>
@@ -100,25 +112,25 @@
 
     <section id="projects" class="section">
       <div class="container">
-        <h2>Project Quests</h2>
+        <div class="title-chip">Project Quests</div>
         <div class="card-grid">
           <article class="pixel-card reveal">
             <p class="card-meta">[Category]</p>
             <h3>[Project Name]</h3>
-            <p>[Describe the problem, what you built, and the outcome in 2 to 3 sentences.]</p>
-            <a class="card-link" href="#">[GitHub / Demo Link]</a>
+            <p>[Describe the problem, your approach, and the impact in 2-3 sentences.]</p>
+            <a class="card-link" href="#">[GitHub / Demo]</a>
           </article>
           <article class="pixel-card reveal">
             <p class="card-meta">[Category]</p>
             <h3>[Project Name]</h3>
-            <p>[Describe the problem, what you built, and the outcome in 2 to 3 sentences.]</p>
-            <a class="card-link" href="#">[GitHub / Demo Link]</a>
+            <p>[Describe the problem, your approach, and the impact in 2-3 sentences.]</p>
+            <a class="card-link" href="#">[GitHub / Demo]</a>
           </article>
           <article class="pixel-card reveal">
             <p class="card-meta">[Category]</p>
             <h3>[Project Name]</h3>
-            <p>[Describe the problem, what you built, and the outcome in 2 to 3 sentences.]</p>
-            <a class="card-link" href="#">[GitHub / Demo Link]</a>
+            <p>[Describe the problem, your approach, and the impact in 2-3 sentences.]</p>
+            <a class="card-link" href="#">[GitHub / Demo]</a>
           </article>
         </div>
       </div>
@@ -126,32 +138,23 @@
 
     <section id="skills" class="section">
       <div class="container">
-        <h2>Skill Inventory</h2>
+        <div class="title-chip">Skill Inventory</div>
         <ul class="skill-list reveal">
-          <li>[Skill 1]</li>
-          <li>[Skill 2]</li>
-          <li>[Skill 3]</li>
-          <li>[Skill 4]</li>
-          <li>[Skill 5]</li>
-          <li>[Skill 6]</li>
-          <li>[Skill 7]</li>
-          <li>[Skill 8]</li>
-          <li>[Skill 9]</li>
-          <li>[Skill 10]</li>
-          <li>[Skill 11]</li>
-          <li>[Skill 12]</li>
+          <li>[Skill 1]</li><li>[Skill 2]</li><li>[Skill 3]</li><li>[Skill 4]</li>
+          <li>[Skill 5]</li><li>[Skill 6]</li><li>[Skill 7]</li><li>[Skill 8]</li>
+          <li>[Skill 9]</li><li>[Skill 10]</li><li>[Skill 11]</li><li>[Skill 12]</li>
         </ul>
       </div>
     </section>
 
     <section id="contact" class="section">
       <div class="container">
+        <div class="title-chip">Final Boss: Contact</div>
         <div class="panel reveal">
-          <h2>Contact Portal</h2>
-          <p>[Add your preferred contact line here.]</p>
+          <p>[Add your contact sentence here.]</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#">[LinkedIn URL]</a>
-            <a class="btn btn-secondary" href="#">[Email Address]</a>
+            <a class="btn btn-secondary" href="#">[Email]</a>
             <a class="btn btn-secondary" href="#">[GitHub URL]</a>
           </div>
         </div>
