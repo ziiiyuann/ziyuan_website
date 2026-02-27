@@ -1,6 +1,10 @@
 const fetchScoresBtn = document.getElementById("fetchScoresBtn");
 const scoresStatus = document.getElementById("scoresStatus");
 const scoresList = document.getElementById("scoresList");
+const ESPN_SCOREBOARD_ENDPOINTS = [
+  "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+  "https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+];
 
 function setScoresStatus(message, isError = false) {
   if (!scoresStatus) return;
@@ -16,6 +20,112 @@ function clearScores() {
 function normalizeScore(value) {
   if (value === null || value === undefined || value === "") return "-";
   return String(value);
+}
+
+function toNumericScore(value) {
+  const text = String(value ?? "").trim();
+  if (!text) return null;
+  return /^-?\d+$/.test(text) ? Number(text) : null;
+}
+
+function formatDateKey(offsetDays = 0) {
+  const date = new Date();
+  date.setUTCDate(date.getUTCDate() + offsetDays);
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  return `${year}${month}${day}`;
+}
+
+function makeQuarterLabels(periodCount) {
+  const labels = [];
+  for (let i = 0; i < periodCount; i += 1) {
+    if (i < 4) {
+      labels.push(`Q${i + 1}`);
+    } else if (i === 4) {
+      labels.push("OT");
+    } else {
+      labels.push(`${i - 3}OT`);
+    }
+  }
+  return labels;
+}
+
+function parseEspnTeam(competitor) {
+  const lines = Array.isArray(competitor?.linescores)
+    ? competitor.linescores.map((line) => toNumericScore(line?.displayValue ?? line?.value))
+    : [];
+  return {
+    code: String(competitor?.team?.abbreviation || "").trim(),
+    name: String(competitor?.team?.displayName || competitor?.team?.name || "Team").trim(),
+    points: toNumericScore(competitor?.score),
+    quarters: lines,
+  };
+}
+
+function parseEspnGames(payload) {
+  const events = Array.isArray(payload?.events) ? payload.events : [];
+  const games = [];
+
+  events.forEach((event) => {
+    const competition = Array.isArray(event?.competitions) ? event.competitions[0] : null;
+    const competitors = Array.isArray(competition?.competitors) ? competition.competitors : [];
+    const awayComp = competitors.find((team) => team?.homeAway === "away");
+    const homeComp = competitors.find((team) => team?.homeAway === "home");
+    if (!awayComp || !homeComp) return;
+
+    const awayTeam = parseEspnTeam(awayComp);
+    const homeTeam = parseEspnTeam(homeComp);
+    const periodCount = Math.max(awayTeam.quarters.length, homeTeam.quarters.length);
+
+    games.push({
+      status:
+        String(event?.status?.type?.shortDetail || event?.status?.type?.description || "Scheduled").trim(),
+      teams: [awayTeam, homeTeam],
+      quarterLabels: makeQuarterLabels(periodCount),
+      boxscoreUrl: null,
+    });
+  });
+
+  return games;
+}
+
+function gameHasQuarterData(game) {
+  return (game?.teams || []).some((team) => Array.isArray(team?.quarters) && team.quarters.length > 0);
+}
+
+async function fetchEspnFallbackGames() {
+  const dateKeys = [formatDateKey(0), formatDateKey(-1)];
+
+  for (const dateKey of dateKeys) {
+    for (const endpoint of ESPN_SCOREBOARD_ENDPOINTS) {
+      try {
+        const response = await fetch(`${endpoint}?dates=${dateKey}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        if (!response.ok) continue;
+
+        const payload = await response.json();
+        const games = parseEspnGames(payload);
+        if (games.length > 0) {
+          return {
+            games,
+            source: `${endpoint}?dates=${dateKey}`,
+          };
+        }
+      } catch {
+        continue;
+      }
+    }
+  }
+
+  return {
+    games: [],
+    source: "",
+  };
 }
 
 function normalizeScoresEndpoint(rawEndpoint) {
@@ -182,6 +292,12 @@ async function fetchScores() {
     });
 
     if (!response.ok) {
+      const fallback = await fetchEspnFallbackGames();
+      if (fallback.games.length > 0) {
+        renderScores(fallback.games, fallback.source);
+        setScoresStatus("Worker is rate-limited right now. Loaded scores via ESPN fallback.");
+        return;
+      }
       throw new Error(`HTTP ${response.status}`);
     }
 
@@ -195,8 +311,24 @@ async function fetchScores() {
       throw new Error(data.error || "Worker returned an error.");
     }
 
-    renderScores(data.games || [], data.source || "");
+    const workerGames = Array.isArray(data.games) ? data.games : [];
+    if (workerGames.length === 0 || !workerGames.some(gameHasQuarterData)) {
+      const fallback = await fetchEspnFallbackGames();
+      if (fallback.games.length > 0) {
+        renderScores(fallback.games, fallback.source);
+        setScoresStatus("Loaded scores via ESPN fallback (Worker source had no quarter data).");
+        return;
+      }
+    }
+
+    renderScores(workerGames, data.source || "");
   } catch (error) {
+    const fallback = await fetchEspnFallbackGames();
+    if (fallback.games.length > 0) {
+      renderScores(fallback.games, fallback.source);
+      setScoresStatus("Loaded scores via ESPN fallback.");
+      return;
+    }
     setScoresStatus(`Could not fetch scores: ${error.message}`, true);
   } finally {
     fetchScoresBtn.disabled = false;

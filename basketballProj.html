@@ -25,19 +25,17 @@
         <div class="title-chip">Fun Project</div>
         <article class="panel reveal">
           <p class="card-meta">Self</p>
-          <h1>Basketball Reference Dupe</h1>
+          <h1>Basketball Reference Lite</h1>
           <p>
-            This page is a placeholder for the full Basketball Reference Dupe case study.
-            You can replace this with architecture notes, screenshots, metrics, and your build decisions.
+            Basic NBA score-tracking web app.
           </p>
           <p>
-            Suggested sections: project objective, data model, backend design, UI implementation,
-            and what you would improve in the next iteration.
+            Shows game status, quarter-by-quarter scoring, and final totals.
           </p>
           <hr class="project-divider" />
-          <h2>Live Scores Demo</h2>
+          <h2>Live Scores</h2>
           <p>
-            Click the button to fetch the latest scores scraped from Basketball Reference via your Cloudflare Worker.
+            Click to load today's NBA games.
           </p>
           <div class="score-tool">
             <button
@@ -49,7 +47,7 @@
               Fetch Latest Scores
             </button>
             <p id="scoresStatus" class="scores-status">
-              Please don't spam the button! Tokens are expensive.
+              Ready to fetch scores.
             </p>
             <div id="scoresList" class="scores-list" aria-live="polite"></div>
           </div>
@@ -71,4 +69,3 @@
   <script src="basketballScores.js"></script>
 </body>
 </html>
-
