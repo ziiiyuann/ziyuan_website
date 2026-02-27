@@ -21,8 +21,6 @@
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#tools">Tools</a>
       </nav>
     </div>
   </header>
@@ -31,21 +29,21 @@
     <section class="hero section">
       <div class="container hero-grid">
         <div class="hero-main panel reveal">
-          <p class="eyebrow">About Me</p>
+          <p class="eyebrow">Title Card</p>
           <div class="hero-title-row">
             <h1>Ziyuan Wang</h1>
             <figure class="hero-photo">
-              <img src="assets/images/6127549091983068987.jpg" alt="Portrait of Ziyuan Wang" />
+              <img src="assets/images/6127549091983068996.jpg" alt="Portrait of Ziyuan Wang" />
             </figure>
           </div>
           <p class="lead">Welcome to my portfolio site!</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects">View My Projects!</a>
             <div class="hero-icon-links">
-              <a class="icon-btn" href="https://www.linkedin.com/in/ziiiyuann/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
+              <a class="icon-btn-linked" href="https://www.linkedin.com/in/ziiiyuann/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
                 <img src="assets/images/Linkedin%20Icon.png" alt="" />
               </a>
-              <a class="icon-btn" href="mailto:wzy980907@outlook.com" aria-label="Send email">
+              <a class="icon-btn-email" href="mailto:wzy980907@outlook.com" aria-label="Send email">
                 <img src="assets/images/Email-Icon.png" alt="" />
               </a>
             </div>
@@ -56,9 +54,19 @@
           <h2>Summary</h2>
           <ul class="stat-list">
             <li><span>School</span><strong>National University of Singapore</strong></li>
-            <li><span>Year of Study</span><strong>Penultimate Student</strong></li>
+            <li>
+              <span>Year of Study</span>
+              <strong>Penultimate Student</strong>
+              <div class="study-progress" role="img" aria-label="Year of study progress: 3 out of 4">
+                <span class="study-progress-fill"></span>
+              </div>
+              <small class="study-progress-label">3.5 / 4 complete</small>
+            </li>
             <li><span>Degree</span><strong>Bachelors of Science - Business Analytics</strong></li>
-            <li><span>Status</span><strong>Open to Internships (Aug 2026 Start)</strong></li>
+            <li>
+              <span>Status</span>
+              <strong class="status-line">Open to Internships (Aug 2026 Start) <span class="status-pill">Open</span></strong>
+            </li>
           </ul>
         </aside>
       </div>
@@ -69,9 +77,12 @@
     <section id="experience" class="section">
       <div class="container">
         <div class="title-chip">Employment History</div>
-        <div class="card-grid">
-          <article class="pixel-card reveal">
-            <p class="card-meta">Jan 2026 - Present</p>
+        <div class="experience-list">
+          <article class="pixel-card reveal job-card current-role">
+            <div class="job-head">
+              <p class="card-meta">Jan 2026 - Present</p>
+              <span class="current-badge">Current</span>
+            </div>
             <h3>Application Developer (Intern)</h3>
             <p class="card-sub">ITLink Business Solutions (Singapore)</p>
             <ul class="impact-list">
@@ -81,8 +92,10 @@
               <li>Handled tasks including web scraping and business intelligence research/discussions.</li>
             </ul>
           </article>
-          <article class="pixel-card reveal">
-            <p class="card-meta">Jun 2025 - Sept 2025</p>
+          <article class="pixel-card reveal job-card">
+            <div class="job-head">
+              <p class="card-meta">Jun 2025 - Sept 2025</p>
+            </div>
             <h3>Full-stack Developer (Intern)</h3>
             <p class="card-sub">Ceus Capital Pte. Ltd</p>
             <ul class="impact-list">
@@ -103,11 +116,20 @@
             <p>  Assisted in rectifying any System Software breakdown arising from defects in the System Software 
             codes for workflows, web services, batch jobs, System Software configurations, including the database, 
             during the System Warranty Period</p>
+            <div class="project-tags">
+              <span class="tag tag-tm1">IBM TM1</span>
+              <span class="tag tag-python">Python</span>
+            </div>
           </article>
           <article class="pixel-card reveal">
             <p class="card-meta">ITLink</p>
             <h3>Excel to Power BI Migration Project</h3>
             <p> Fully migrated FP&A dashboards from Excel to Power BI. Engineered relational and non-relational databases </p>
+            <div class="project-tags">
+              <span class="tag tag-powerbi">Power BI</span>
+              <span class="tag tag-excel">Excel</span>
+              <span class="tag tag-sql">SQL</span>
+            </div>
           </article>
         </div>
       </div>
@@ -119,25 +141,6 @@
         <div class="panel reveal">
           <p>Hitting Diamond IV on Teamfight Tactics</p>
         </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <div class="container">
-        <div class="title-chip">Programming Languages</div>
-        <ul class="skill-list reveal">
-          <li>Python</li><li>R</li><li>SQL</li><li>Java</li>
-          <li>HTML&CSS</li><li>TypeScript</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="tools" class="section">
-      <div class="container">
-        <div class="title-chip">Tools & Technologies</div>
-        <ul class="skill-list reveal">
-          <li>Power BI</li><li>IBM TM1</li><li>Tableau</li><li>Git</li><li>Vim</li><li>React</li><li>Matomo</li>
-        </ul>
       </div>
     </section>
 
