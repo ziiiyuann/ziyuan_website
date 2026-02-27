@@ -1,4 +1,5 @@
 const SOURCE_URL = "https://www.basketball-reference.com/";
+const MAX_GAMES_WITH_QUARTERS = 12;
 
 function makeCorsHeaders(origin = "*") {
   return {
@@ -84,7 +85,10 @@ function parseTeams(tableHtml) {
     const scoreCellRegex = /<td[^>]*class="right[^"]*"[^>]*>([\s\S]*?)<\/td>/gi;
     let scoreCellMatch;
     while ((scoreCellMatch = scoreCellRegex.exec(row)) !== null) {
-      scoreCells.push(toScoreValue(stripTags(scoreCellMatch[1])));
+      const parsedValue = toScoreValue(stripTags(scoreCellMatch[1]));
+      if (parsedValue !== null) {
+        scoreCells.push(parsedValue);
+      }
     }
 
     const points = scoreCells.length > 0 ? scoreCells[scoreCells.length - 1] : null;
@@ -98,6 +102,20 @@ function parseTeams(tableHtml) {
   }
 
   return teams;
+}
+
+function parseLineScoreFromBoxscore(html) {
+  const lineScoreMatch = html.match(
+    /<table[^>]*(?:id="line_score"|class="[^"]*linescore[^"]*")[^>]*>([\s\S]*?)<\/table>/i
+  );
+  if (!lineScoreMatch) return null;
+
+  const tableHtml = lineScoreMatch[0];
+  const teams = parseTeams(tableHtml).slice(0, 2);
+  if (teams.length < 2) return null;
+
+  const quarterLabels = parseQuarterLabels(tableHtml);
+  return { teams, quarterLabels };
 }
 
 function extractGames(html) {
@@ -126,6 +144,48 @@ function extractGames(html) {
   }
 
   return games;
+}
+
+async function enrichGamesWithQuarterScores(games) {
+  const enriched = await Promise.all(
+    games.map(async (game, index) => {
+      if (!game?.boxscoreUrl || index >= MAX_GAMES_WITH_QUARTERS) {
+        return game;
+      }
+
+      try {
+        const upstream = await fetch(game.boxscoreUrl, {
+          headers: {
+            "User-Agent": "Mozilla/5.0 (compatible; ScoreFetcher/1.0)",
+          },
+          cf: {
+            cacheEverything: true,
+            cacheTtl: 120,
+          },
+        });
+        if (!upstream.ok) return game;
+
+        const html = await upstream.text();
+        const lineScore = parseLineScoreFromBoxscore(html);
+        if (!lineScore) return game;
+
+        const hasQuarterValues = lineScore.teams.some(
+          (team) => Array.isArray(team.quarters) && team.quarters.length > 0
+        );
+        if (!hasQuarterValues) return game;
+
+        return {
+          ...game,
+          teams: lineScore.teams,
+          quarterLabels: lineScore.quarterLabels,
+        };
+      } catch {
+        return game;
+      }
+    })
+  );
+
+  return enriched;
 }
 
 function jsonResponse(body, status = 200, origin = "*") {
@@ -185,7 +245,7 @@ export default {
       }
 
       const html = await upstream.text();
-      const games = extractGames(html);
+      const games = await enrichGamesWithQuarterScores(extractGames(html));
 
       return jsonResponse(
         {

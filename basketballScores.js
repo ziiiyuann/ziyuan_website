@@ -41,9 +41,12 @@ function buildQuarterLabels(game, teams) {
     const count = Array.isArray(team?.quarters) ? team.quarters.length : 0;
     return Math.max(max, count);
   }, 0);
+  if (maxQuarters === 0) {
+    return [];
+  }
 
   if (Array.isArray(game?.quarterLabels) && game.quarterLabels.length > 0) {
-    return game.quarterLabels.slice(0, maxQuarters || game.quarterLabels.length);
+    return game.quarterLabels.slice(0, maxQuarters);
   }
 
   const labels = [];
