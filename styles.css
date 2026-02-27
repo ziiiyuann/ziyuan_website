@@ -169,8 +169,9 @@ h3,
 }
 
 .hero-photo {
-  margin: 0;
-  aspect-ratio: 4 / 5;
+  margin: 0 0 0.85rem;
+  width: min(170px, 42%);
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--bg-soft);
@@ -281,8 +282,8 @@ li {
 }
 
 .icon-btn {
-  width: 42px;
-  height: 42px;
+  width: 34px;
+  height: 34px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -304,8 +305,8 @@ body[data-theme="light"] .icon-btn:hover {
 }
 
 .icon-btn img {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
   display: block;
 }
