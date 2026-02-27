@@ -170,7 +170,7 @@ h3,
 
 .hero-photo {
   margin: 0 0 0.85rem;
-  width: min(170px, 42%);
+  width: clamp(72px, 18vw, 110px);
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -282,8 +282,8 @@ li {
 }
 
 .icon-btn {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -305,8 +305,8 @@ body[data-theme="light"] .icon-btn:hover {
 }
 
 .icon-btn img {
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
   object-fit: contain;
   display: block;
 }
