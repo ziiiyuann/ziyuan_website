@@ -317,6 +317,35 @@ li {
   padding-left: 1rem;
 }
 
+.impact-list {
+  list-style: none;
+  margin: 0.42rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.impact-list li {
+  position: relative;
+  padding-left: 1rem;
+  line-height: 1.55;
+}
+
+.impact-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--text);
+  opacity: 0.9;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.impact-list strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .card-link {
   text-decoration: underline;
   color: var(--text);
