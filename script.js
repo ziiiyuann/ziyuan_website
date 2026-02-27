@@ -1,6 +1,6 @@
 ﻿const yearEl = document.getElementById("year");
 if (yearEl) {
-  yearEl.textContent = `(c) ${new Date().getFullYear()} Your Name. All rights reserved.`;
+  yearEl.textContent = `(c) ${new Date().getFullYear()} Ziyuan Wang. All rights reserved.`;
 }
 
 const menuBtn = document.getElementById("menuBtn");
