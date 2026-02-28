@@ -4,6 +4,16 @@ const VISION_WASM_URL = `${VISION_BUNDLE_URL}/wasm`;
 
 const MODEL_ASSET_URL =
   "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task";
+const FLASH_DURATION_MS = 260;
+const BLACKOUT_START_DELAY_MS = 150;
+const BLACKOUT_DURATION_MS = 4000;
+const EMOTION_IMAGE_MAP = {
+  Happy: "assets/images/emotion-happy.png",
+  Neutral: "assets/images/emotion-neutral.png",
+  Surprised: "assets/images/emotion-surprised.png",
+  Sad: "assets/images/emotion-sad.png",
+  Angry: "assets/images/emotion-angry.png",
+};
 
 const startBtn = document.getElementById("startEmotionBtn");
 const stopBtn = document.getElementById("stopEmotionBtn");
@@ -12,6 +22,10 @@ const hintEl = document.getElementById("emotionHint");
 const labelEl = document.getElementById("emotionLabel");
 const videoEl = document.getElementById("emotionVideo");
 const canvasEl = document.getElementById("emotionCanvas");
+const flashEl = document.getElementById("emotionFlash");
+const blackoutEl = document.getElementById("emotionBlackout");
+const reactionImageEl = document.getElementById("emotionReactionImage");
+const reactionTextEl = document.getElementById("emotionReactionText");
 
 let faceLandmarker = null;
 let stream = null;
@@ -22,11 +36,99 @@ let FaceLandmarker = null;
 let FilesetResolver = null;
 let DrawingUtils = null;
 let visionModulePromise = null;
+let flashTimeoutId = null;
+let blackoutStartTimeoutId = null;
+let blackoutTimeoutId = null;
+let happyEffectCooldownUntil = 0;
+let isBlackoutActive = false;
 
 function setStatus(message, isError = false) {
   if (!statusEl) return;
   statusEl.textContent = message;
   statusEl.classList.toggle("error", isError);
+}
+
+function resetReactionImage(message = "Emotion image will appear here.") {
+  if (reactionImageEl) {
+    reactionImageEl.hidden = true;
+    reactionImageEl.removeAttribute("src");
+    reactionImageEl.removeAttribute("alt");
+    reactionImageEl.style.opacity = "1";
+  }
+  if (reactionTextEl) {
+    reactionTextEl.textContent = message;
+  }
+}
+
+function updateReactionImage(emotion, confidence) {
+  if (!reactionImageEl || !reactionTextEl) return;
+
+  const imagePath = EMOTION_IMAGE_MAP[emotion] || EMOTION_IMAGE_MAP.Neutral;
+  const confidencePct = Math.max(0, Math.min(100, Math.round(confidence * 100)));
+  const alpha = Math.max(0.6, Math.min(1, confidence + 0.35));
+
+  if (reactionImageEl.getAttribute("src") !== imagePath) {
+    reactionImageEl.src = imagePath;
+  }
+  reactionImageEl.alt = `${emotion} emotion visual`;
+  reactionImageEl.hidden = false;
+  reactionImageEl.style.opacity = `${alpha}`;
+  reactionTextEl.textContent = `${emotion} (${confidencePct}%)`;
+}
+
+function clearHappyEffects() {
+  if (flashTimeoutId) {
+    clearTimeout(flashTimeoutId);
+    flashTimeoutId = null;
+  }
+  if (blackoutStartTimeoutId) {
+    clearTimeout(blackoutStartTimeoutId);
+    blackoutStartTimeoutId = null;
+  }
+  if (blackoutTimeoutId) {
+    clearTimeout(blackoutTimeoutId);
+    blackoutTimeoutId = null;
+  }
+  if (flashEl) {
+    flashEl.classList.remove("is-active");
+  }
+  if (blackoutEl) {
+    blackoutEl.hidden = true;
+  }
+  isBlackoutActive = false;
+}
+
+function maybeTriggerHappyEffect(emotion, confidence) {
+  if (emotion !== "Happy" || confidence < 0.6) return;
+
+  const now = Date.now();
+  if (now < happyEffectCooldownUntil || isBlackoutActive) return;
+  happyEffectCooldownUntil = now + 7000;
+
+  if (flashEl) {
+    flashEl.classList.remove("is-active");
+    // Force reflow so repeated triggers restart the CSS animation.
+    void flashEl.offsetWidth;
+    flashEl.classList.add("is-active");
+    flashTimeoutId = setTimeout(() => {
+      flashEl.classList.remove("is-active");
+      flashTimeoutId = null;
+    }, FLASH_DURATION_MS + 20);
+  }
+
+  if (blackoutEl) {
+    blackoutStartTimeoutId = setTimeout(() => {
+      blackoutStartTimeoutId = null;
+      isBlackoutActive = true;
+      blackoutEl.hidden = false;
+      blackoutEl.textContent = "You look good cutie ;) Keep smiling everyday!";
+      blackoutTimeoutId = setTimeout(() => {
+        blackoutEl.hidden = true;
+        blackoutTimeoutId = null;
+        isBlackoutActive = false;
+      }, BLACKOUT_DURATION_MS);
+    }, BLACKOUT_START_DELAY_MS);
+  }
 }
 
 function getBlendshapeScore(categories, name) {
@@ -140,6 +242,8 @@ function stopDetection() {
   if (labelEl) {
     labelEl.textContent = "Emotion: --";
   }
+  clearHappyEffects();
+  resetReactionImage("Emotion image will appear here.");
 
   if (startBtn) startBtn.disabled = false;
   if (stopBtn) stopBtn.disabled = true;
@@ -176,11 +280,14 @@ function predictLoop() {
     if (labelEl) {
       labelEl.textContent = `Emotion: ${emotion} (${Math.round(confidence * 100)}%)`;
     }
+    updateReactionImage(emotion, confidence);
+    maybeTriggerHappyEffect(emotion, confidence);
     setStatus("Detection running...");
   } else {
     if (labelEl) {
       labelEl.textContent = "Emotion: No face detected";
     }
+    resetReactionImage("No face detected.");
     setStatus("No face detected. Move into frame.", true);
   }
 
@@ -228,3 +335,10 @@ async function startDetection() {
 
 if (startBtn) startBtn.addEventListener("click", startDetection);
 if (stopBtn) stopBtn.addEventListener("click", stopDetection);
+if (reactionImageEl) {
+  reactionImageEl.addEventListener("error", () => {
+    resetReactionImage("Emotion image file not found. Check image names in assets/images.");
+  });
+}
+clearHappyEffects();
+resetReactionImage();

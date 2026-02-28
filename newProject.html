@@ -26,13 +26,23 @@
         <article class="panel reveal emotion-panel">
           <p class="card-meta">Self</p>
           <h1>Facial Emotion Detection</h1>
-          <p>
-            Browser-based emotion detection demo using MediaPipe Face Landmarker and webcam input.
-          </p>
-          <div class="project-tags">
-            <span class="tag tag-js">JavaScript</span>
-            <span class="tag tag-mediapipe">MediaPipe</span>
-            <span class="tag tag-webcam">Webcam API</span>
+          <div class="emotion-copy">
+            <p>
+              Browser-based emotion detection demo using MediaPipe Face Landmarker and webcam input.
+            </p>
+            <p>
+              How it works: the page opens your webcam stream in-browser, MediaPipe tracks facial
+              landmarks and blendshape scores frame-by-frame, then a lightweight JavaScript rule
+              model maps those scores into an estimated emotion label in real time.
+            </p>
+            <p>
+              > Don't worry! The site is not recording the footage of your webcam...that's illegal.
+            </p>
+            <p>
+            </p>
+            <p>
+              > Try to hit >60% happiness! No one has achieved it yet :)
+            </p>
           </div>
 
           <hr class="project-divider" />
@@ -46,7 +56,13 @@
           <div class="emotion-stage">
             <video id="emotionVideo" class="emotion-video" playsinline muted></video>
             <canvas id="emotionCanvas" class="emotion-canvas"></canvas>
+            <div id="emotionFlash" class="emotion-flash" aria-hidden="true"></div>
+            <div id="emotionBlackout" class="emotion-blackout" hidden>You look good cutie ;) Keep smiling everyday!</div>
             <div id="emotionLabel" class="emotion-label">Emotion: --</div>
+            <div class="emotion-reaction" id="emotionReaction">
+              <img id="emotionReactionImage" class="emotion-reaction-image" alt="" hidden />
+              <p id="emotionReactionText" class="emotion-reaction-text">Emotion image will appear here.</p>
+            </div>
           </div>
 
           <p id="emotionHint" class="emotion-hint">

@@ -1058,6 +1058,15 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   gap: 0.9rem;
 }
 
+.emotion-copy {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.emotion-copy p {
+  margin: 0;
+}
+
 .emotion-controls {
   display: flex;
   gap: 0.6rem;
@@ -1098,6 +1107,51 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   pointer-events: none;
 }
 
+.emotion-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.emotion-flash.is-active {
+  animation: cameraFlash 260ms cubic-bezier(0.2, 0.7, 0.1, 1) 1;
+}
+
+@keyframes cameraFlash {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.emotion-blackout {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #000000;
+  color: #ffffff;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.emotion-blackout[hidden] {
+  display: none;
+}
+
 .emotion-label {
   position: absolute;
   left: 0.55rem;
@@ -1109,6 +1163,34 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   color: var(--text);
   border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
   background: color-mix(in srgb, var(--panel) 80%, transparent);
+}
+
+.emotion-reaction {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 3;
+  display: grid;
+  justify-items: end;
+  gap: 0.3rem;
+  pointer-events: none;
+}
+
+.emotion-reaction-image {
+  width: clamp(160px, 24vw, 260px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 1px solid var(--line-soft);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.emotion-reaction-text {
+  margin: 0;
+  padding: 0.18rem 0.4rem;
+  font-size: 0.68rem;
+  color: #f7f7f7;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .emotion-hint {
