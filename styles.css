@@ -1297,7 +1297,7 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
 .gojo-orb-blue {
   background:
-    radial-gradient(circle at 46% 44%, rgba(210, 235, 255, 0.46) 0 12px, rgba(132, 184, 255, 0.3) 13px 22px, rgba(0, 0, 0, 0) 23px 100%),
+    radial-gradient(circle at 46% 44%, rgba(210, 235, 255, 0.42) 0 7px, rgba(132, 184, 255, 0.26) 8px 13px, rgba(0, 0, 0, 0) 14px 100%),
     radial-gradient(circle at 34% 26%, rgba(94, 134, 208, 0.74) 0%, rgba(38, 74, 174, 0.86) 24%, rgba(14, 43, 126, 0.95) 52%, rgba(6, 18, 63, 0.99) 74%, rgba(2, 7, 28, 1) 100%);
   box-shadow:
     0 0 14px rgba(28, 70, 170, 0.76),
@@ -1308,7 +1308,7 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
 .gojo-orb-red {
   background:
-    radial-gradient(circle at 46% 44%, rgba(255, 224, 224, 0.46) 0 12px, rgba(241, 154, 154, 0.3) 13px 22px, rgba(0, 0, 0, 0) 23px 100%),
+    radial-gradient(circle at 46% 44%, rgba(255, 224, 224, 0.42) 0 7px, rgba(241, 154, 154, 0.26) 8px 13px, rgba(0, 0, 0, 0) 14px 100%),
     radial-gradient(circle at 34% 26%, rgba(188, 112, 112, 0.74) 0%, rgba(142, 42, 42, 0.86) 24%, rgba(108, 22, 22, 0.95) 52%, rgba(58, 11, 11, 0.99) 74%, rgba(24, 6, 6, 1) 100%);
   box-shadow:
     0 0 14px rgba(143, 41, 41, 0.76),
@@ -1320,7 +1320,7 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 .gojo-orb-purple {
   z-index: 11;
   background:
-    radial-gradient(circle at 46% 44%, rgba(248, 232, 255, 0.5) 0 14px, rgba(214, 162, 255, 0.34) 15px 26px, rgba(0, 0, 0, 0) 27px 100%),
+    radial-gradient(circle at 46% 44%, rgba(248, 232, 255, 0.44) 0 8px, rgba(214, 162, 255, 0.28) 9px 15px, rgba(0, 0, 0, 0) 16px 100%),
     radial-gradient(circle at 34% 26%, rgba(166, 120, 210, 0.74) 0%, rgba(118, 54, 186, 0.86) 22%, rgba(84, 28, 150, 0.96) 46%, rgba(46, 14, 96, 0.99) 68%, rgba(15, 5, 40, 1) 100%);
   box-shadow:
     0 0 20px rgba(112, 52, 176, 0.84),
