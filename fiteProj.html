@@ -23,29 +23,105 @@
     <section class="section">
       <div class="container">
         <div class="title-chip">School Project</div>
-        <article class="panel reveal">
-          <p class="card-meta">NUS</p>
-          <h1>SPY LSTM Forecasting (FITE Project)</h1>
+        <article class="panel reveal fite-panel">
+          <div class="fite-topline">
+            <p class="card-meta">University of Hong Kong</p>
+          </div>
+          <h1>SPY LSTM Forecasting</h1>
           <p>
-            Time-series forecasting project to predict next-day SPY adjusted close using LSTM models.
+            Time-series forecasting project to predict next-day SPY adjusted close with deep learning and baseline comparison.
           </p>
-          <div class="project-tags">
-            <span class="tag tag-python">Python</span>
-            <span class="tag tag-tensorflow">TensorFlow</span>
-            <span class="tag tag-lstm">LSTM</span>
-            <span class="tag tag-yfinance">yfinance</span>
-            <span class="tag tag-sklearn">scikit-learn</span>
+
+          <div class="fite-summary-grid">
+            <section class="fite-block">
+              <h2>Workflow</h2>
+              <ul class="impact-list">
+                <li>Fetched SPY market data and engineered MA10/30/90, log returns, volatility, and RSI14 features.</li>
+                <li>Built sequence windows (90, 30, and 10 days) so each sample gives the model recent price/indicator history.</li>
+                <li>Each LSTM learns temporal patterns by carrying memory from earlier timesteps and outputs a next-day price forecast.</li>
+                <li>Compared all models using MSE, RMSE, and MAE, then benchmarked them against a MA10 baseline.</li>
+                <li>Generated next-day predictions and plotted model outputs against actual prices.</li>
+                <li>In simple terms: the model looks at recent market behavior, learns recurring patterns, and makes an informed guess for tomorrow's price.</li>
+              </ul>
+            </section>
+            <aside class="fite-block">
+              <h2>Model Setup</h2>
+              <ul class="stat-list fite-stat-list">
+                <li><span>Ticker</span><strong>SPY</strong></li>
+                <li><span>Target</span><strong>Next-day AdjClose</strong></li>
+                <li><span>Train Range</span><strong>2015 - 2021</strong></li>
+                <li><span>Test Range</span><strong>2022 - 2025</strong></li>
+                <li><span>Lookbacks</span><strong>90 / 30 / 10 Days</strong></li>
+              </ul>
+            </aside>
           </div>
 
           <hr class="project-divider" />
 
-          <h2>Project Flow</h2>
-          <ul class="impact-list">
-            <li>Downloaded SPY data and engineered indicators: MA10/30/90, log returns, volatility, and RSI14.</li>
-            <li>Prepared sequential samples and trained three LSTM models with 90-day, 30-day, and 10-day lookback windows.</li>
-            <li>Evaluated model performance using MSE, RMSE, and MAE.</li>
-            <li>Benchmarked model outputs against a MA10 baseline and plotted predictions against actual values.</li>
-          </ul>
+          <section class="fite-block">
+            <div class="fite-charts-head">
+              <h2>Forecast Charts</h2>
+              <button class="btn btn-primary" id="loadFiteChartsBtn" type="button">Load Charts</button>
+            </div>
+            <p id="fiteChartsStatus" class="fite-chart-status">
+              Script was run on 28/2/2026.
+            </p>
+            <div id="fiteChartsGrid" class="fite-charts-grid" hidden>
+              <figure class="fite-chart-card fite-chart-card-main">
+                <img class="fite-chart-image" data-src="assets/images/fite/actual_vs_lstm.png" alt="Actual vs LSTM forecast chart" />
+                <figcaption class="fite-chart-caption">Actual vs LSTM (90/30/10) + MA10 baseline</figcaption>
+                <small class="fite-chart-hint" hidden>Missing file: assets/images/fite/actual_vs_lstm.png</small>
+              </figure>
+              <article class="fite-chart-card fite-results-card">
+                <h3 class="fite-results-title">Evaluation Results</h3>
+                <div class="fite-table-wrap">
+                  <table class="fite-metric-table" aria-label="Model evaluation metrics">
+                    <thead>
+                      <tr>
+                        <th>Model</th>
+                        <th>MSE</th>
+                        <th>RMSE</th>
+                        <th>MAE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>90-day LSTM</td>
+                        <td>159.88</td>
+                        <td>12.64</td>
+                        <td>8.96</td>
+                      </tr>
+                      <tr>
+                        <td>30-day LSTM</td>
+                        <td>173.16</td>
+                        <td>13.16</td>
+                        <td>9.92</td>
+                      </tr>
+                      <tr>
+                        <td>10-day LSTM</td>
+                        <td>142.16</td>
+                        <td>11.92</td>
+                        <td>8.53</td>
+                      </tr>
+                      <tr>
+                        <td>Baseline MA10</td>
+                        <td>95.92</td>
+                        <td>9.79</td>
+                        <td>7.55</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <h3 class="fite-results-title">Next-Day Predictions [output calculated on 28/2/2026]</h3>
+                <ul class="fite-pred-list">
+                  <li><span>90-day LSTM</span><strong>588.79</strong></li>
+                  <li><span>30-day LSTM</span><strong>573.98</strong></li>
+                  <li><span>10-day LSTM</span><strong>585.32</strong></li>
+                  <li><span>Baseline MA10</span><strong>583.55</strong></li>
+                </ul>
+              </article>
+            </div>
+          </section>
 
           <hr class="project-divider" />
 
@@ -65,5 +141,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="fitePage.js"></script>
 </body>
 </html>
