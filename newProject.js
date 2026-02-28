@@ -1,6 +1,6 @@
-import vision from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest";
-
-const { FaceLandmarker, FilesetResolver, DrawingUtils } = vision;
+const MEDIAPIPE_VERSION = "0.10.14";
+const VISION_BUNDLE_URL = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MEDIAPIPE_VERSION}`;
+const VISION_WASM_URL = `${VISION_BUNDLE_URL}/wasm`;
 
 const MODEL_ASSET_URL =
   "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task";
@@ -18,6 +18,10 @@ let stream = null;
 let drawingUtils = null;
 let running = false;
 let rafId = null;
+let FaceLandmarker = null;
+let FilesetResolver = null;
+let DrawingUtils = null;
+let visionModulePromise = null;
 
 function setStatus(message, isError = false) {
   if (!statusEl) return;
@@ -77,19 +81,37 @@ async function ensureLandmarker() {
   if (faceLandmarker) return;
 
   setStatus("Loading MediaPipe model...");
-  const fileset = await FilesetResolver.forVisionTasks(
-    "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
-  );
+  if (!visionModulePromise) {
+    visionModulePromise = import(VISION_BUNDLE_URL);
+  }
 
-  faceLandmarker = await FaceLandmarker.createFromOptions(fileset, {
-    baseOptions: {
-      modelAssetPath: MODEL_ASSET_URL,
-      delegate: "GPU",
-    },
-    outputFaceBlendshapes: true,
-    runningMode: "VIDEO",
-    numFaces: 1,
-  });
+  const vision = await visionModulePromise;
+  FaceLandmarker = vision.FaceLandmarker;
+  FilesetResolver = vision.FilesetResolver;
+  DrawingUtils = vision.DrawingUtils;
+
+  if (!FaceLandmarker || !FilesetResolver || !DrawingUtils) {
+    throw new Error("MediaPipe modules failed to load.");
+  }
+
+  const fileset = await FilesetResolver.forVisionTasks(VISION_WASM_URL);
+
+  const baseOptions = { modelAssetPath: MODEL_ASSET_URL };
+  try {
+    faceLandmarker = await FaceLandmarker.createFromOptions(fileset, {
+      baseOptions: { ...baseOptions, delegate: "GPU" },
+      outputFaceBlendshapes: true,
+      runningMode: "VIDEO",
+      numFaces: 1,
+    });
+  } catch (_gpuError) {
+    faceLandmarker = await FaceLandmarker.createFromOptions(fileset, {
+      baseOptions,
+      outputFaceBlendshapes: true,
+      runningMode: "VIDEO",
+      numFaces: 1,
+    });
+  }
 
   setStatus("Model loaded. Starting camera...");
 }
@@ -167,6 +189,11 @@ function predictLoop() {
 
 async function startDetection() {
   if (!videoEl || !canvasEl) return;
+
+  if (window.location.protocol === "file:") {
+    setStatus("Open this page via HTTPS (GitHub Pages) or a local web server, not file://", true);
+    return;
+  }
 
   if (!navigator.mediaDevices?.getUserMedia) {
     setStatus("Camera API is not available in this browser.", true);
