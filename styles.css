@@ -520,7 +520,7 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
 .study-progress-fill {
   display: block;
-  width: 75%;
+  width: 62.5%;
   height: 100%;
   background: linear-gradient(90deg, #6ee787 0%, #3fb950 100%);
 }
@@ -1039,6 +1039,81 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   background: #3e2a46;
   color: #f0def8;
   border-color: #a366ba;
+}
+
+.tag-mediapipe {
+  background: #24384f;
+  color: #d8edff;
+  border-color: #5d8fc0;
+}
+
+.tag-webcam {
+  background: #2f3a24;
+  color: #e6f5d6;
+  border-color: #7ea85b;
+}
+
+.emotion-panel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.emotion-controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.emotion-status {
+  margin: -0.2rem 0 0;
+  font-size: 0.88rem;
+}
+
+.emotion-status.error {
+  color: #ff8d8d;
+}
+
+.emotion-stage {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--line-soft);
+  background: #000000;
+  overflow: hidden;
+}
+
+.emotion-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scaleX(-1);
+}
+
+.emotion-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1);
+  pointer-events: none;
+}
+
+.emotion-label {
+  position: absolute;
+  left: 0.55rem;
+  bottom: 0.55rem;
+  z-index: 2;
+  padding: 0.24rem 0.5rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.66rem;
+  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
+  background: color-mix(in srgb, var(--panel) 80%, transparent);
+}
+
+.emotion-hint {
+  margin: -0.15rem 0 0;
+  font-size: 0.82rem;
 }
 
 .achievement-panel {

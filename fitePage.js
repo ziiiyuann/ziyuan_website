@@ -24,7 +24,7 @@ function loadFiteCharts() {
 
   fiteChartsGrid.hidden = false;
   if (fiteChartsStatus) {
-    fiteChartsStatus.textContent = "Charts loaded. If any are missing, check the file names in assets/images/fite/.";
+    fiteChartsStatus.textContent = "Charts loaded. If any are missing, please contact ziyuan!";
   }
   if (loadFiteChartsBtn) {
     loadFiteChartsBtn.textContent = "Charts Loaded";

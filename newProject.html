@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basketball Reference Dupe | Ziyuan Wang</title>
+  <title>Facial Emotion Detection | Ziyuan Wang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -23,39 +23,38 @@
     <section class="section">
       <div class="container">
         <div class="title-chip">Fun Project</div>
-        <article class="panel reveal">
+        <article class="panel reveal emotion-panel">
           <p class="card-meta">Self</p>
-          <h1>Basketball Reference Lite</h1>
+          <h1>Facial Emotion Detection</h1>
           <p>
-            Basic NBA score-tracking web app.
+            Browser-based emotion detection demo using MediaPipe Face Landmarker and webcam input.
           </p>
-          <p>
-            Shows game status, quarter-by-quarter scoring, and final totals.
-          </p><p>
-            This tracker works by scrapping various NBA-related websites for scoring numbers.
-          </p>
-          <hr class="project-divider" />
-          <h2>Live Scores</h2>
-          <p>
-            Click to load today's NBA games.
-          </p>
-          <div class="score-tool">
-            <button
-              class="btn btn-primary"
-              id="fetchScoresBtn"
-              type="button"
-              data-endpoint="https://ziyuan-scores-api.ziiiyuann-scores.workers.dev/scores"
-            >
-              Fetch Latest Scores
-            </button>
-            <p id="scoresStatus" class="scores-status">
-              Ready to fetch scores.
-               <p id="scoresStatus" class="scores-status">
-              Please do not spam the button. Tokens are expensive.
-              </p>
-            </p>
-            <div id="scoresList" class="scores-list" aria-live="polite"></div>
+          <div class="project-tags">
+            <span class="tag tag-js">JavaScript</span>
+            <span class="tag tag-mediapipe">MediaPipe</span>
+            <span class="tag tag-webcam">Webcam API</span>
           </div>
+
+          <hr class="project-divider" />
+
+          <div class="emotion-controls">
+            <button class="btn btn-primary" id="startEmotionBtn" type="button">Start Camera</button>
+            <button class="btn" id="stopEmotionBtn" type="button" disabled>Stop</button>
+          </div>
+          <p id="emotionStatus" class="emotion-status">Camera is off. Click Start Camera to begin.</p>
+
+          <div class="emotion-stage">
+            <video id="emotionVideo" class="emotion-video" playsinline muted></video>
+            <canvas id="emotionCanvas" class="emotion-canvas"></canvas>
+            <div id="emotionLabel" class="emotion-label">Emotion: --</div>
+          </div>
+
+          <p id="emotionHint" class="emotion-hint">
+            Tip: keep your face centered and well-lit for better detection.
+          </p>
+
+          <hr class="project-divider" />
+
           <div class="hero-actions">
             <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
           </div>
@@ -71,6 +70,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script src="basketballScores.js"></script>
+  <script type="module" src="newProject.js"></script>
 </body>
 </html>
