@@ -170,6 +170,8 @@ h3,
 
 .hero-main {
   padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-main h1 {
@@ -291,10 +293,20 @@ li {
 .hero-action-bar {
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.8rem;
+  margin-top: auto;
   padding: 0.34rem 0.42rem;
   border-radius: 6px;
   background: #ffffff;
+}
+
+.hero-action-bar .hero-status {
+  margin: 0;
+  color: #101114;
+  font-weight: 600;
 }
 
 .btn {
