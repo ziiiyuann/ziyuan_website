@@ -1297,33 +1297,36 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
 .gojo-orb-blue {
   background:
-    radial-gradient(circle at 34% 26%, rgba(128, 176, 244, 0.72) 0%, rgba(52, 96, 201, 0.78) 24%, rgba(20, 56, 150, 0.88) 52%, rgba(8, 23, 78, 0.95) 74%, rgba(3, 9, 33, 0.99) 100%);
+    radial-gradient(circle at 46% 44%, rgba(210, 235, 255, 0.46) 0 12px, rgba(132, 184, 255, 0.3) 13px 22px, rgba(0, 0, 0, 0) 23px 100%),
+    radial-gradient(circle at 34% 26%, rgba(94, 134, 208, 0.74) 0%, rgba(38, 74, 174, 0.86) 24%, rgba(14, 43, 126, 0.95) 52%, rgba(6, 18, 63, 0.99) 74%, rgba(2, 7, 28, 1) 100%);
   box-shadow:
-    0 0 16px rgba(37, 88, 196, 0.78),
-    0 0 40px rgba(22, 61, 160, 0.82),
-    0 0 104px rgba(8, 26, 92, 0.82),
-    inset 0 0 15px rgba(169, 202, 255, 0.24);
+    0 0 14px rgba(28, 70, 170, 0.76),
+    0 0 36px rgba(16, 48, 130, 0.84),
+    0 0 110px rgba(5, 18, 70, 0.9),
+    inset 0 0 14px rgba(137, 174, 242, 0.2);
 }
 
 .gojo-orb-red {
   background:
-    radial-gradient(circle at 34% 26%, rgba(228, 150, 150, 0.72) 0%, rgba(176, 56, 56, 0.78) 24%, rgba(133, 28, 28, 0.88) 52%, rgba(72, 13, 13, 0.95) 74%, rgba(29, 7, 7, 0.99) 100%);
+    radial-gradient(circle at 46% 44%, rgba(255, 224, 224, 0.46) 0 12px, rgba(241, 154, 154, 0.3) 13px 22px, rgba(0, 0, 0, 0) 23px 100%),
+    radial-gradient(circle at 34% 26%, rgba(188, 112, 112, 0.74) 0%, rgba(142, 42, 42, 0.86) 24%, rgba(108, 22, 22, 0.95) 52%, rgba(58, 11, 11, 0.99) 74%, rgba(24, 6, 6, 1) 100%);
   box-shadow:
-    0 0 16px rgba(177, 53, 53, 0.78),
-    0 0 40px rgba(132, 22, 22, 0.82),
-    0 0 104px rgba(78, 12, 12, 0.82),
-    inset 0 0 15px rgba(245, 171, 171, 0.24);
+    0 0 14px rgba(143, 41, 41, 0.76),
+    0 0 36px rgba(104, 18, 18, 0.84),
+    0 0 110px rgba(64, 10, 10, 0.9),
+    inset 0 0 14px rgba(227, 152, 152, 0.2);
 }
 
 .gojo-orb-purple {
   z-index: 11;
   background:
-    radial-gradient(circle at 34% 26%, rgba(200, 156, 232, 0.74) 0%, rgba(144, 72, 214, 0.8) 22%, rgba(101, 36, 174, 0.9) 46%, rgba(57, 17, 114, 0.95) 68%, rgba(20, 6, 48, 0.99) 100%);
+    radial-gradient(circle at 46% 44%, rgba(248, 232, 255, 0.5) 0 14px, rgba(214, 162, 255, 0.34) 15px 26px, rgba(0, 0, 0, 0) 27px 100%),
+    radial-gradient(circle at 34% 26%, rgba(166, 120, 210, 0.74) 0%, rgba(118, 54, 186, 0.86) 22%, rgba(84, 28, 150, 0.96) 46%, rgba(46, 14, 96, 0.99) 68%, rgba(15, 5, 40, 1) 100%);
   box-shadow:
-    0 0 22px rgba(143, 72, 208, 0.86),
-    0 0 56px rgba(101, 31, 174, 0.9),
-    0 0 138px rgba(54, 14, 112, 0.86),
-    inset 0 0 18px rgba(226, 188, 255, 0.24);
+    0 0 20px rgba(112, 52, 176, 0.84),
+    0 0 52px rgba(76, 24, 138, 0.9),
+    0 0 146px rgba(39, 10, 90, 0.92),
+    inset 0 0 16px rgba(197, 150, 240, 0.18);
 }
 
 .gojo-orb-purple::before {
