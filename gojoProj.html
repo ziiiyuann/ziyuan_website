@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gojo | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">Fun Project</div>
+        <article class="panel reveal emotion-panel">
+          <p class="card-meta">Self</p>
+          <h1>Gojo</h1>
+          <div class="emotion-copy">
+            <p>
+              Hand movement detection demo built with MediaPipe Hand Landmarker and webcam input.
+            </p>
+            <p>
+              How it works: each video frame is processed in-browser to extract 21 hand landmarks.
+              Wrist displacement across consecutive frames is converted into motion speed (px/s),
+              then classified as moving vs still in real time.
+            </p>
+          </div>
+
+          <hr class="project-divider" />
+
+          <div class="emotion-controls">
+            <button class="btn btn-primary" id="startGojoBtn" type="button">Start Camera</button>
+            <button class="btn" id="stopGojoBtn" type="button" disabled>Stop</button>
+          </div>
+          <p id="gojoStatus" class="emotion-status">Camera is off. Click Start Camera to begin.</p>
+
+          <div class="emotion-stage" id="gojoStage">
+            <video id="gojoVideo" class="emotion-video" playsinline muted></video>
+            <canvas id="gojoCanvas" class="emotion-canvas"></canvas>
+            <div id="gojoChaosLayer" class="gojo-chaos-layer" aria-hidden="true"></div>
+            <div id="gojoBlueOrb" class="gojo-orb gojo-orb-blue" aria-hidden="true"></div>
+            <div id="gojoRedOrb" class="gojo-orb gojo-orb-red" aria-hidden="true"></div>
+            <div id="gojoPurpleOrb" class="gojo-orb gojo-orb-purple" aria-hidden="true"></div>
+            <div id="gojoLabel" class="emotion-label">Hand: --</div>
+            <div class="emotion-reaction">
+              <p id="gojoMotionBadge" class="emotion-reaction-text">Movement: Waiting...</p>
+            </div>
+          </div>
+
+          <p id="gojoHint" class="emotion-hint">
+            Tip: Right index+middle up (others closed) = Blue Orb. Left index+middle up = Red Orb. Bring both together to trigger Hollow Purple.
+          </p>
+
+          <hr class="project-divider" />
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module" src="gojoProject.js"></script>
+</body>
+</html>

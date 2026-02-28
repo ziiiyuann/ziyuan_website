@@ -1065,6 +1065,12 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   border-color: #7ea85b;
 }
 
+.tag-hand {
+  background: #2a243f;
+  color: #e1dbff;
+  border-color: #8f7bdf;
+}
+
 .emotion-panel {
   display: grid;
   gap: 0.9rem;
@@ -1162,6 +1168,652 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
 .emotion-blackout[hidden] {
   display: none;
+}
+
+.gojo-orb {
+  --gojo-growth: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(60px, 10vw, 98px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 4;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.58);
+  transition: opacity 80ms ease, transform 80ms ease;
+  mix-blend-mode: screen;
+}
+
+.gojo-chaos-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+#gojoStage.gojo-chaos-active {
+  animation: gojoStageShake 90ms steps(2) infinite;
+}
+
+#gojoStage.gojo-purple-active {
+  animation: gojoStageShakeHeavy 55ms steps(2) infinite;
+}
+
+#gojoStage.gojo-chaos-active .emotion-video,
+#gojoStage.gojo-chaos-active .emotion-canvas {
+  animation: gojoRealityWarp 280ms steps(2) infinite;
+}
+
+#gojoStage.gojo-purple-active .emotion-video,
+#gojoStage.gojo-purple-active .emotion-canvas {
+  animation: gojoRealityWarpHeavy 160ms steps(2) infinite;
+}
+
+#gojoStage.gojo-chaos-active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 45%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06) 0px,
+      rgba(255, 255, 255, 0.06) 1px,
+      rgba(255, 255, 255, 0) 3px,
+      rgba(255, 255, 255, 0) 6px
+    );
+  opacity: 0.38;
+  animation: gojoScanShift 220ms steps(2) infinite;
+}
+
+#gojoStage.gojo-purple-active::before {
+  opacity: 0.62;
+  background:
+    radial-gradient(circle at 50% 52%, rgba(197, 130, 255, 0.2) 0%, rgba(109, 36, 198, 0.22) 42%, rgba(0, 0, 0, 0) 72%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(235, 201, 255, 0.1) 0px,
+      rgba(235, 201, 255, 0.1) 1px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0) 5px
+    );
+}
+
+#gojoStage.gojo-chaos-flash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(186, 223, 255, 0.18) 32%, rgba(255, 113, 113, 0.16) 56%, rgba(0, 0, 0, 0) 76%);
+  mix-blend-mode: screen;
+  animation: gojoFlashPulse 120ms ease-out 1;
+}
+
+.gojo-orb::before,
+.gojo-orb::after {
+  content: "";
+  position: absolute;
+  inset: -16%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.gojo-orb::before {
+  inset: -36%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 42%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(5px);
+  opacity: 0.75;
+  animation: gojoOrbAuraPulse 1200ms ease-in-out infinite;
+}
+
+.gojo-orb::after {
+  inset: -24%;
+  background:
+    conic-gradient(
+      from 180deg,
+      rgba(255, 255, 255, 0.0) 0deg,
+      rgba(255, 255, 255, 0.34) 85deg,
+      rgba(255, 255, 255, 0.0) 160deg,
+      rgba(255, 255, 255, 0.28) 250deg,
+      rgba(255, 255, 255, 0.0) 360deg
+    );
+  opacity: 0.36;
+  filter: blur(1.6px);
+  animation: gojoOrbRingDrift 1700ms linear infinite;
+}
+
+.gojo-orb.is-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(calc(1 + var(--gojo-growth, 0)));
+  animation: gojoOrbPulse 720ms ease-in-out infinite, gojoOrbFloat 2100ms ease-in-out infinite, gojoOrbTremor 95ms steps(2) infinite;
+}
+
+.gojo-orb-blue {
+  background:
+    radial-gradient(circle at 34% 26%, rgba(128, 176, 244, 0.72) 0%, rgba(52, 96, 201, 0.78) 24%, rgba(20, 56, 150, 0.88) 52%, rgba(8, 23, 78, 0.95) 74%, rgba(3, 9, 33, 0.99) 100%);
+  box-shadow:
+    0 0 16px rgba(37, 88, 196, 0.78),
+    0 0 40px rgba(22, 61, 160, 0.82),
+    0 0 104px rgba(8, 26, 92, 0.82),
+    inset 0 0 15px rgba(169, 202, 255, 0.24);
+}
+
+.gojo-orb-red {
+  background:
+    radial-gradient(circle at 34% 26%, rgba(228, 150, 150, 0.72) 0%, rgba(176, 56, 56, 0.78) 24%, rgba(133, 28, 28, 0.88) 52%, rgba(72, 13, 13, 0.95) 74%, rgba(29, 7, 7, 0.99) 100%);
+  box-shadow:
+    0 0 16px rgba(177, 53, 53, 0.78),
+    0 0 40px rgba(132, 22, 22, 0.82),
+    0 0 104px rgba(78, 12, 12, 0.82),
+    inset 0 0 15px rgba(245, 171, 171, 0.24);
+}
+
+.gojo-orb-purple {
+  z-index: 11;
+  background:
+    radial-gradient(circle at 34% 26%, rgba(200, 156, 232, 0.74) 0%, rgba(144, 72, 214, 0.8) 22%, rgba(101, 36, 174, 0.9) 46%, rgba(57, 17, 114, 0.95) 68%, rgba(20, 6, 48, 0.99) 100%);
+  box-shadow:
+    0 0 22px rgba(143, 72, 208, 0.86),
+    0 0 56px rgba(101, 31, 174, 0.9),
+    0 0 138px rgba(54, 14, 112, 0.86),
+    inset 0 0 18px rgba(226, 188, 255, 0.24);
+}
+
+.gojo-orb-purple::before {
+  background: radial-gradient(circle, rgba(180, 96, 237, 0.26) 0%, rgba(128, 55, 199, 0.16) 40%, rgba(84, 28, 151, 0) 72%);
+}
+
+.gojo-orb-purple::after {
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(248, 228, 255, 0) 0deg,
+      rgba(228, 183, 255, 0.45) 90deg,
+      rgba(159, 86, 255, 0.18) 150deg,
+      rgba(248, 228, 255, 0) 240deg,
+      rgba(228, 183, 255, 0.5) 320deg,
+      rgba(248, 228, 255, 0) 360deg
+    );
+}
+
+.gojo-orb-purple.is-active {
+  animation:
+    gojoOrbPulse 520ms ease-in-out infinite,
+    gojoOrbFloat 1700ms ease-in-out infinite,
+    gojoOrbTremor 70ms steps(2) infinite,
+    gojoPurpleSurge 420ms ease-in-out infinite;
+}
+
+.gojo-particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--gojo-psize, 6px);
+  height: var(--gojo-psize, 6px);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+  pointer-events: none;
+  z-index: 5;
+  filter: blur(0.2px);
+}
+
+.gojo-particle.is-live {
+  animation: gojoParticleBurst 700ms ease-out forwards;
+}
+
+.gojo-particle-blue {
+  background: radial-gradient(circle, rgba(182, 226, 255, 0.96) 0%, rgba(68, 154, 255, 0.94) 58%, rgba(8, 72, 187, 0.46) 100%);
+  box-shadow: 0 0 12px rgba(52, 150, 255, 0.95), 0 0 30px rgba(19, 102, 228, 0.6);
+}
+
+.gojo-particle-red {
+  background: radial-gradient(circle, rgba(255, 206, 206, 0.96) 0%, rgba(242, 92, 92, 0.94) 58%, rgba(170, 20, 20, 0.46) 100%);
+  box-shadow: 0 0 12px rgba(236, 82, 82, 0.95), 0 0 30px rgba(191, 31, 31, 0.6);
+}
+
+.gojo-particle-purple {
+  background: radial-gradient(circle, rgba(244, 219, 255, 0.98) 0%, rgba(181, 93, 255, 0.95) 56%, rgba(96, 35, 189, 0.52) 100%);
+  box-shadow: 0 0 13px rgba(205, 123, 255, 0.98), 0 0 34px rgba(134, 52, 236, 0.78);
+}
+
+.gojo-lightning {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--gojo-lthickness, 2.4px);
+  height: var(--gojo-len, 34px);
+  transform-origin: 50% 0%;
+  transform: translate(-50%, -50%) rotate(var(--gojo-angle, 0deg)) scaleY(0.2);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+}
+
+.gojo-lightning::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.95) 20%,
+    currentColor 55%,
+    rgba(255, 255, 255, 0.35) 82%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  clip-path: polygon(
+    52% 0%,
+    76% 14%,
+    44% 28%,
+    68% 42%,
+    34% 56%,
+    61% 72%,
+    42% 100%,
+    23% 84%,
+    40% 66%,
+    16% 50%,
+    43% 34%,
+    20% 16%
+  );
+}
+
+.gojo-lightning::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: var(--gojo-branch-y, 42%);
+  width: calc(var(--gojo-lthickness, 2.4px) * 0.9);
+  height: var(--gojo-branch-len, 16px);
+  transform-origin: 50% 0%;
+  transform: translateX(-50%) rotate(var(--gojo-branch-angle, -35deg));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.88) 22%,
+    currentColor 60%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  clip-path: polygon(52% 0%, 74% 26%, 40% 52%, 66% 76%, 44% 100%, 22% 72%, 42% 46%, 20% 20%);
+  opacity: 0.88;
+}
+
+.gojo-lightning.is-live {
+  animation: gojoLightningArc 260ms ease-out forwards;
+}
+
+.gojo-lightning-blue {
+  color: rgba(70, 168, 255, 0.95);
+}
+
+.gojo-lightning-red {
+  color: rgba(241, 88, 88, 0.95);
+}
+
+.gojo-lightning-purple {
+  color: rgba(206, 125, 255, 0.98);
+}
+
+.gojo-spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--gojo-ssize, 2px);
+  height: var(--gojo-ssize, 2px);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+  pointer-events: none;
+  z-index: 7;
+}
+
+.gojo-spark.is-live {
+  animation: gojoSparkArc 220ms ease-out forwards;
+}
+
+.gojo-spark-blue {
+  background: rgba(177, 225, 255, 0.95);
+  box-shadow: 0 0 8px rgba(54, 151, 255, 0.92), 0 0 18px rgba(31, 111, 222, 0.66);
+}
+
+.gojo-spark-red {
+  background: rgba(255, 206, 206, 0.95);
+  box-shadow: 0 0 8px rgba(228, 79, 79, 0.92), 0 0 18px rgba(184, 33, 33, 0.66);
+}
+
+.gojo-spark-purple {
+  background: rgba(245, 218, 255, 0.98);
+  box-shadow: 0 0 8px rgba(212, 131, 255, 0.96), 0 0 22px rgba(141, 59, 237, 0.82);
+}
+
+.gojo-rift {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--gojo-rift-thickness, 2.4px);
+  height: var(--gojo-rift-len, 160px);
+  transform-origin: 50% 0%;
+  transform: translate(-50%, -50%) rotate(var(--gojo-rift-angle, 0deg)) scaleY(0.2);
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(0.25px) drop-shadow(0 0 9px rgba(255, 255, 255, 0.6));
+}
+
+.gojo-rift::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.95) 22%,
+    currentColor 58%,
+    rgba(255, 255, 255, 0.2) 86%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  clip-path: polygon(
+    54% 0%,
+    80% 12%,
+    42% 24%,
+    72% 36%,
+    38% 48%,
+    66% 60%,
+    34% 72%,
+    58% 86%,
+    44% 100%,
+    26% 86%,
+    40% 72%,
+    18% 58%,
+    44% 44%,
+    20% 28%,
+    46% 14%
+  );
+}
+
+.gojo-rift::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: var(--gojo-rift-branch-y, 48%);
+  width: calc(var(--gojo-rift-thickness, 2.4px) * 0.95);
+  height: var(--gojo-rift-branch-len, 24px);
+  transform-origin: 50% 0%;
+  transform: translateX(-50%) rotate(var(--gojo-rift-branch-angle, -45deg));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.92) 22%,
+    currentColor 58%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  clip-path: polygon(52% 0%, 78% 22%, 40% 46%, 70% 70%, 44% 100%, 18% 76%, 42% 50%, 16% 22%);
+  opacity: 0.86;
+}
+
+.gojo-rift.is-live {
+  animation: gojoRiftSpew 250ms ease-out forwards;
+}
+
+.gojo-rift-blue {
+  color: rgba(76, 176, 255, 0.98);
+}
+
+.gojo-rift-red {
+  color: rgba(246, 83, 83, 0.98);
+}
+
+.gojo-rift-purple {
+  color: rgba(210, 124, 255, 0.98);
+}
+
+@keyframes gojoOrbPulse {
+  0%,
+  100% {
+    filter: brightness(0.86) saturate(1.05);
+  }
+  50% {
+    filter: brightness(1.12) saturate(1.28);
+  }
+}
+
+@keyframes gojoOrbTremor {
+  0% {
+    margin-left: 0;
+    margin-top: 0;
+  }
+  25% {
+    margin-left: -1px;
+    margin-top: 1px;
+  }
+  50% {
+    margin-left: 1px;
+    margin-top: -1px;
+  }
+  75% {
+    margin-left: -1px;
+    margin-top: -1px;
+  }
+  100% {
+    margin-left: 0;
+    margin-top: 0;
+  }
+}
+
+@keyframes gojoOrbFloat {
+  0% {
+    margin-left: 0;
+    margin-top: -1px;
+  }
+  50% {
+    margin-left: 0;
+    margin-top: 3px;
+  }
+  100% {
+    margin-left: 0;
+    margin-top: -1px;
+  }
+}
+
+@keyframes gojoOrbAuraPulse {
+  from {
+    opacity: 0.45;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 0.88;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes gojoOrbRingDrift {
+  from {
+    transform: rotate(0deg) scale(0.95);
+  }
+  to {
+    transform: rotate(360deg) scale(1.06);
+  }
+}
+
+@keyframes gojoParticleBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + var(--gojo-pdx, 0px)),
+      calc(-50% + var(--gojo-pdy, 0px))
+    ) scale(0.2);
+  }
+}
+
+@keyframes gojoLightningArc {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--gojo-angle, 0deg)) scaleY(0.2);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--gojo-angle, 0deg)) scaleY(1)
+      translate(var(--gojo-ltx, 0px), var(--gojo-lty, 0px));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(calc(var(--gojo-angle, 0deg) + 14deg)) scaleY(0.3)
+      translate(calc(var(--gojo-ltx, 0px) * 1.2), calc(var(--gojo-lty, 0px) * 1.2));
+  }
+}
+
+@keyframes gojoSparkArc {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(-50% + var(--gojo-sdx, 0px)),
+      calc(-50% + var(--gojo-sdy, 0px))
+    ) scale(0.2);
+  }
+}
+
+@keyframes gojoRiftSpew {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--gojo-rift-angle, 0deg)) scaleY(0.2);
+  }
+  16% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--gojo-rift-angle, 0deg)) scaleY(1.1)
+      translate(var(--gojo-rift-dx, 0px), var(--gojo-rift-dy, 0px));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%)
+      rotate(calc(var(--gojo-rift-angle, 0deg) + 22deg))
+      scaleY(0.35)
+      translate(calc(var(--gojo-rift-dx, 0px) * 1.4), calc(var(--gojo-rift-dy, 0px) * 1.4));
+  }
+}
+
+@keyframes gojoPurpleSurge {
+  0%,
+  100% {
+    filter: brightness(0.92) saturate(1.18) hue-rotate(0deg);
+  }
+  50% {
+    filter: brightness(1.24) saturate(1.52) hue-rotate(-6deg);
+  }
+}
+
+@keyframes gojoStageShake {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2px, 1px);
+  }
+  50% {
+    transform: translate(2px, -1px);
+  }
+  75% {
+    transform: translate(-1px, -2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes gojoStageShakeHeavy {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  20% {
+    transform: translate(-4px, 2px) rotate(-0.3deg);
+  }
+  40% {
+    transform: translate(4px, -3px) rotate(0.35deg);
+  }
+  60% {
+    transform: translate(-3px, -4px) rotate(-0.28deg);
+  }
+  80% {
+    transform: translate(4px, 3px) rotate(0.24deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes gojoRealityWarp {
+  0% {
+    filter: contrast(1.06) saturate(1.15) brightness(0.98);
+  }
+  50% {
+    filter: contrast(1.28) saturate(1.35) brightness(0.9) hue-rotate(-8deg);
+  }
+  100% {
+    filter: contrast(1.06) saturate(1.15) brightness(0.98);
+  }
+}
+
+@keyframes gojoRealityWarpHeavy {
+  0% {
+    filter: contrast(1.16) saturate(1.28) brightness(0.94) hue-rotate(-8deg);
+  }
+  50% {
+    filter: contrast(1.42) saturate(1.6) brightness(0.86) hue-rotate(-18deg);
+  }
+  100% {
+    filter: contrast(1.16) saturate(1.28) brightness(0.94) hue-rotate(-8deg);
+  }
+}
+
+@keyframes gojoScanShift {
+  0% {
+    transform: translateY(0);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translateY(2px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.22;
+  }
+}
+
+@keyframes gojoFlashPulse {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .emotion-label {
