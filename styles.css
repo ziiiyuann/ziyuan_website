@@ -790,6 +790,21 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   background: #cc6db0;
 }
 
+.project-school {
+  position: relative;
+  overflow: hidden;
+  border-color: #d38b2c;
+  box-shadow: 3px 3px 0 color-mix(in srgb, #d38b2c 35%, var(--shadow));
+}
+
+.project-school::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: #d38b2c;
+}
+
 .project-censored {
   position: relative;
   overflow: hidden;
@@ -909,6 +924,30 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   background: #4c471a;
   color: #fff7cc;
   border-color: #d4c04e;
+}
+
+.tag-tensorflow {
+  background: #4a2d14;
+  color: #ffe6cf;
+  border-color: #dd8335;
+}
+
+.tag-lstm {
+  background: #22364a;
+  color: #d9eeff;
+  border-color: #4f84b3;
+}
+
+.tag-yfinance {
+  background: #173f31;
+  color: #d5f6e9;
+  border-color: #3a9a73;
+}
+
+.tag-sklearn {
+  background: #3e2a46;
+  color: #f0def8;
+  border-color: #a366ba;
 }
 
 .achievement-panel {

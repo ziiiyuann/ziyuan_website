@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPY LSTM Forecasting | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">School Project</div>
+        <article class="panel reveal">
+          <p class="card-meta">NUS</p>
+          <h1>SPY LSTM Forecasting (FITE Project)</h1>
+          <p>
+            Time-series forecasting project to predict next-day SPY adjusted close using LSTM models.
+          </p>
+          <div class="project-tags">
+            <span class="tag tag-python">Python</span>
+            <span class="tag tag-tensorflow">TensorFlow</span>
+            <span class="tag tag-lstm">LSTM</span>
+            <span class="tag tag-yfinance">yfinance</span>
+            <span class="tag tag-sklearn">scikit-learn</span>
+          </div>
+
+          <hr class="project-divider" />
+
+          <h2>Project Flow</h2>
+          <ul class="impact-list">
+            <li>Downloaded SPY data and engineered indicators: MA10/30/90, log returns, volatility, and RSI14.</li>
+            <li>Prepared sequential samples and trained three LSTM models with 90-day, 30-day, and 10-day lookback windows.</li>
+            <li>Evaluated model performance using MSE, RMSE, and MAE.</li>
+            <li>Benchmarked model outputs against a MA10 baseline and plotted predictions against actual values.</li>
+          </ul>
+
+          <hr class="project-divider" />
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="FITEProject.py" target="_blank" rel="noopener noreferrer">View Python Script</a>
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
