@@ -94,6 +94,46 @@ function gameHasQuarterData(game) {
   return (game?.teams || []).some((team) => Array.isArray(team?.quarters) && team.quarters.length > 0);
 }
 
+function gameQuarterCellCount(game) {
+  return (game?.teams || []).reduce((count, team) => {
+    const quarters = Array.isArray(team?.quarters) ? team.quarters.length : 0;
+    return count + quarters;
+  }, 0);
+}
+
+function gameKeyFromTeams(teams) {
+  const codes = (Array.isArray(teams) ? teams : [])
+    .map((team) => String(team?.code || "").trim().toUpperCase())
+    .filter(Boolean)
+    .sort();
+  return codes.length >= 2 ? `${codes[0]}|${codes[1]}` : null;
+}
+
+function mergeQuarterData(workerGames, fallbackGames) {
+  if (!Array.isArray(workerGames) || workerGames.length === 0) return [];
+  if (!Array.isArray(fallbackGames) || fallbackGames.length === 0) return workerGames;
+
+  const fallbackByKey = new Map();
+  fallbackGames.forEach((game) => {
+    const key = gameKeyFromTeams(game?.teams);
+    if (key) fallbackByKey.set(key, game);
+  });
+
+  return workerGames.map((workerGame) => {
+    if (gameHasQuarterData(workerGame)) return workerGame;
+    const key = gameKeyFromTeams(workerGame?.teams);
+    if (!key) return workerGame;
+    const fallbackGame = fallbackByKey.get(key);
+    if (!fallbackGame || !gameHasQuarterData(fallbackGame)) return workerGame;
+    return {
+      ...workerGame,
+      status: fallbackGame.status || workerGame.status,
+      quarterLabels: Array.isArray(fallbackGame.quarterLabels) ? fallbackGame.quarterLabels : workerGame.quarterLabels,
+      teams: Array.isArray(fallbackGame.teams) ? fallbackGame.teams : workerGame.teams,
+    };
+  });
+}
+
 async function fetchEspnFallbackGames() {
   const dateKeys = [formatDateKey(0), formatDateKey(-1)];
 
@@ -321,7 +361,19 @@ async function fetchScores() {
       }
     }
 
-    renderScores(workerGames, data.source || "");
+    const fallback = await fetchEspnFallbackGames();
+    const mergedGames = mergeQuarterData(workerGames, fallback.games);
+    const workerQuarterCells = workerGames.reduce((sum, game) => sum + gameQuarterCellCount(game), 0);
+    const mergedQuarterCells = mergedGames.reduce((sum, game) => sum + gameQuarterCellCount(game), 0);
+    const sourceLabel = data.source || "";
+
+    if (mergedQuarterCells > workerQuarterCells) {
+      renderScores(mergedGames, sourceLabel);
+      setScoresStatus("Loaded scores (Worker + ESPN backfill for missing quarter splits).");
+      return;
+    }
+
+    renderScores(workerGames, sourceLabel);
   } catch (error) {
     const fallback = await fetchEspnFallbackGames();
     if (fallback.games.length > 0) {

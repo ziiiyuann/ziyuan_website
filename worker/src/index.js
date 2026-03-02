@@ -2,7 +2,6 @@ const SOURCE_URL = "https://www.basketball-reference.com/";
 const NBA_SCOREBOARD_URL = "https://cdn.nba.com/static/json/liveData/scoreboard/todaysScoreboard_00.json";
 const ESPN_SCOREBOARD_URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard";
 const ESPN_SCOREBOARD_URL_WEB = "https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard";
-const MAX_GAMES_WITH_QUARTERS = 12;
 const TEAM_CODE_ALIASES = {
   CHO: "CHA",
   BRK: "BKN",
@@ -373,8 +372,8 @@ async function fetchEspnFallbackGames() {
 
 async function enrichGamesWithQuarterScores(games) {
   const boxscoreEnriched = await Promise.all(
-    games.map(async (game, index) => {
-      if (!game?.boxscoreUrl || index >= MAX_GAMES_WITH_QUARTERS) {
+    games.map(async (game) => {
+      if (!game?.boxscoreUrl) {
         return game;
       }
 
