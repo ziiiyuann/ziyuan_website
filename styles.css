@@ -2116,6 +2116,40 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   font-family: "IBM Plex Mono", monospace;
 }
 
+.powerbi-panel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.powerbi-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.72rem;
+}
+
+.powerbi-shot {
+  margin: 0;
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
+  padding: 0.48rem;
+  display: grid;
+  gap: 0.36rem;
+}
+
+.powerbi-shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid color-mix(in srgb, var(--line-soft) 60%, transparent);
+  background: color-mix(in srgb, var(--panel-alt) 78%, transparent);
+}
+
+.powerbi-shot figcaption {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--text);
+}
+
 .skill-list {
   list-style: none;
   margin: 0;
@@ -2169,6 +2203,10 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   }
 
   .fite-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .powerbi-gallery {
     grid-template-columns: 1fr;
   }
 
