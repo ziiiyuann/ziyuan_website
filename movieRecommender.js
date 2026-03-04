@@ -249,6 +249,21 @@ function weightedPick(items) {
   return weighted[weighted.length - 1];
 }
 
+function uniformPick(items) {
+  if (!items.length) return null;
+  const idx = Math.floor(Math.random() * items.length);
+  return items[idx];
+}
+
+function randomSubset(items, limit) {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, Math.max(0, limit));
+}
+
 function renderMovieResult(primary, alternatives, candidateCount) {
   if (!movieResult || !movieAlternatives || !movieAlternativesWrap) return;
 
@@ -340,6 +355,40 @@ function recommendMovie() {
   renderMovieResult(picked, alternatives, matched.length);
 }
 
+function recommendSurprise() {
+  if (!movies.length) {
+    setMovieRecommendStatus("Load the dataset first.", true);
+    return;
+  }
+
+  const selectedType = String(movieType?.value || "").trim();
+  const pool = selectedType
+    ? movies.filter((movie) => movie.titleType === selectedType)
+    : movies;
+
+  if (!pool.length) {
+    setMovieRecommendStatus("No titles available for the selected type.", true);
+    movieResult.hidden = true;
+    movieAlternativesWrap.hidden = true;
+    return;
+  }
+
+  const picked = uniformPick(pool);
+  if (!picked) {
+    setMovieRecommendStatus("Unable to generate a random recommendation right now.", true);
+    return;
+  }
+
+  const alternatives = randomSubset(
+    pool.filter((movie) => movie.title !== picked.title),
+    5
+  );
+
+  renderMovieResult(picked, alternatives, pool.length);
+  const scopeLabel = selectedType === "tv" ? "TV shows" : selectedType === "movie" ? "movies" : "titles";
+  setMovieRecommendStatus(`Uniform random pick from ${pool.length} ${scopeLabel}.`);
+}
+
 async function parseCsvAndLoad(csvText, sourceLabel) {
   if (typeof Papa === "undefined") {
     setMovieDataStatus("CSV parser library failed to load. Please refresh.", true);
@@ -422,9 +471,6 @@ if (movieForm) {
 
 if (surpriseMovieBtn) {
   surpriseMovieBtn.addEventListener("click", () => {
-    if (movieType) movieType.value = "";
-    if (movieGenre) movieGenre.value = "";
-    if (movieKeyword) movieKeyword.value = "";
-    recommendMovie();
+    recommendSurprise();
   });
 }
