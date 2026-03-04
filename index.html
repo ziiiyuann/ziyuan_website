@@ -105,10 +105,19 @@
       <div class="container">
         <div class="project-head">
           <div class="title-chip">Project Experience</div>
-          <div class="legend-list" aria-label="Project type legend">
-            <span class="legend-pill legend-fun"><span class="legend-dot"></span>Fun</span>
-            <span class="legend-pill legend-work"><span class="legend-dot"></span>Work</span>
-            <span class="legend-pill legend-school"><span class="legend-dot"></span>School</span>
+          <div class="project-filter-list" role="group" aria-label="Filter projects by category">
+            <button class="project-filter-btn project-filter-all is-active" type="button" data-project-filter="all" aria-pressed="true">
+              <span class="legend-dot"></span>All
+            </button>
+            <button class="project-filter-btn project-filter-work" type="button" data-project-filter="work" aria-pressed="false">
+              <span class="legend-dot"></span>Work
+            </button>
+            <button class="project-filter-btn project-filter-school" type="button" data-project-filter="school" aria-pressed="false">
+              <span class="legend-dot"></span>School
+            </button>
+            <button class="project-filter-btn project-filter-fun" type="button" data-project-filter="fun" aria-pressed="false">
+              <span class="legend-dot"></span>Fun
+            </button>
           </div>
         </div>
         <div class="card-grid">

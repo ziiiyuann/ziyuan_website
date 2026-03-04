@@ -57,3 +57,33 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+const projectCards = Array.from(document.querySelectorAll("#projects .card-grid .pixel-card"));
+const projectFilterButtons = Array.from(document.querySelectorAll("[data-project-filter]"));
+
+function projectCardMatchesFilter(cardEl, filterValue) {
+  if (filterValue === "all") return true;
+  return cardEl.classList.contains(`project-${filterValue}`);
+}
+
+function applyProjectFilter(filterValue) {
+  projectCards.forEach((cardEl) => {
+    const shouldShow = projectCardMatchesFilter(cardEl, filterValue);
+    cardEl.classList.toggle("is-filter-hidden", !shouldShow);
+  });
+
+  projectFilterButtons.forEach((btn) => {
+    const active = btn.dataset.projectFilter === filterValue;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
+
+if (projectCards.length > 0 && projectFilterButtons.length > 0) {
+  projectFilterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filterValue = btn.dataset.projectFilter || "all";
+      applyProjectFilter(filterValue);
+    });
+  });
+}

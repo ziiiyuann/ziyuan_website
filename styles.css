@@ -790,11 +790,83 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   flex-wrap: wrap;
 }
 
-.legend-list {
+.project-filter-list {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.34rem;
   align-items: center;
+}
+
+.project-filter-btn {
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--panel-alt) 82%, transparent);
+  color: var(--text);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  line-height: 1.2;
+  padding: 0.2rem 0.54rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  opacity: 0.82;
+  transition: opacity 130ms ease, transform 130ms ease, box-shadow 130ms ease, filter 130ms ease;
+}
+
+.project-filter-btn:hover {
+  border-color: var(--line);
+  opacity: 1;
+}
+
+.project-filter-btn.is-active {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 2px 2px 0 var(--shadow);
+  filter: brightness(1.07);
+}
+
+.project-filter-all {
+  background: color-mix(in srgb, var(--panel-alt) 82%, transparent);
+  color: var(--text);
+  border-color: var(--line-soft);
+}
+
+.project-filter-all .legend-dot {
+  background: color-mix(in srgb, var(--line) 72%, transparent);
+}
+
+.project-filter-work {
+  background: #1d2f4b;
+  color: #d7e7ff;
+  border-color: #4d73b8;
+}
+
+.project-filter-work .legend-dot {
+  background: #73a0ff;
+}
+
+.project-filter-school {
+  background: #4c3514;
+  color: #ffe9c8;
+  border-color: #d38b2c;
+}
+
+.project-filter-school .legend-dot {
+  background: #f2a340;
+}
+
+.project-filter-fun {
+  background: #4b1d3b;
+  color: #ffd7f3;
+  border-color: #cc6db0;
+}
+
+.project-filter-fun .legend-dot {
+  background: #f08bd4;
+}
+
+.card-grid .pixel-card.is-filter-hidden {
+  display: none;
 }
 
 .legend-pill {

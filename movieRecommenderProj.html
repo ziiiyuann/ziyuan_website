@@ -26,14 +26,22 @@
         <article class="panel reveal movie-panel">
           <p class="card-meta">Self</p>
           <h1>Movie + TV Recommender (up till 2024)</h1>
-          <div class="movie-type-row" aria-label="Supported title types">
-            <span class="movie-type-pill">Movies</span>
-            <span class="movie-type-pill">TV Shows</span>
-          </div>
           <p>
             Input your preferences and get a recommendation from your top-rated movies + TV shows dataset.
             The recommender filters candidates and ranks them using rating, vote volume, and keyword relevance.
           </p>
+
+          <section class="movie-data-box">
+            <h2>Workflow</h2>
+            <ul class="impact-list">
+              <li>Load CSV data and normalize fields (title, year, rating, votes, runtime, genre, certificate, description, stars).</li>
+              <li>Classify each title as Movie or TV Show using certificate values (for example, <code>TV-MA</code> means TV Show).</li>
+              <li>Apply your selected filters (type, genre, minimum rating, runtime cap, year range, keyword).</li>
+              <li>For the main recommendation: assign each remaining title a score using rating, vote volume, genre match, and keyword match, then rank descending.</li>
+              <li>Pick one title with weighted randomness from the top candidates so stronger titles are more likely, but results are not always identical.</li>
+              <li><code>Surprise Me</code> uses uniform random selection from the chosen type pool (Movie, TV Show, or Any), without score weighting.</li>
+            </ul>
+          </section>
 
           <hr class="project-divider" />
 
