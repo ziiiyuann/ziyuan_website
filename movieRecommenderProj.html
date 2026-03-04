@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Recommender | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">Fun Project</div>
+        <article class="panel reveal movie-panel">
+          <p class="card-meta">Self</p>
+          <h1>Movie + TV Recommender (Top Rated Titles 2026)</h1>
+          <div class="movie-type-row" aria-label="Supported title types">
+            <span class="movie-type-pill">Movies</span>
+            <span class="movie-type-pill">TV Shows</span>
+          </div>
+          <p>
+            Input your preferences and get a recommendation from your top-rated movies + TV shows dataset.
+            The recommender filters candidates and ranks them using rating, vote volume, and keyword relevance.
+          </p>
+
+          <hr class="project-divider" />
+
+          <section class="movie-data-box">
+            <h2>Dataset</h2>
+            <p class="movie-note">
+              Default dataset path: <code>assets/data/top-rated-movies-2026.csv</code> (movies and TV series supported)
+            </p>
+            <div class="movie-dataset-controls">
+              <button class="btn btn-primary" id="loadMovieDataBtn" type="button">Load Dataset From Site</button>
+              <label class="movie-file-label" for="movieFileInput">
+                Or upload a CSV
+              </label>
+              <input id="movieFileInput" class="movie-file-input" type="file" accept=".csv,text/csv" />
+            </div>
+            <p id="movieDataStatus" class="movie-status">Dataset not loaded yet.</p>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="movie-recommender-box">
+            <h2>Find a Movie / TV Show</h2>
+            <p class="movie-note">Tip: if you have no preference for a filter, leave it empty (or keep it as "Any").</p>
+            <form id="movieForm" class="movie-form">
+              <div class="movie-field">
+                <label for="movieType">Type</label>
+                <select id="movieType">
+                  <option value="">Any</option>
+                  <option value="movie">Movie</option>
+                  <option value="tv">TV Show</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="movieGenre">Genre</label>
+                <select id="movieGenre" disabled>
+                  <option value="">Any</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="movieMinRating">Minimum Rating</label>
+                <input id="movieMinRating" type="number" min="0" max="10" step="0.1" value="7.0" />
+              </div>
+              <div class="movie-field">
+                <label for="movieMaxRuntime">Max Runtime (mins)</label>
+                <input id="movieMaxRuntime" type="number" min="1" step="1" placeholder="e.g. 140" />
+              </div>
+              <div class="movie-field">
+                <label for="movieYearFrom">Year From</label>
+                <input id="movieYearFrom" type="number" min="1900" max="2100" step="1" placeholder="e.g. 2000" />
+              </div>
+              <div class="movie-field">
+                <label for="movieYearTo">Year To</label>
+                <input id="movieYearTo" type="number" min="1900" max="2100" step="1" placeholder="e.g. 2026" />
+              </div>
+              <div class="movie-field movie-field-wide">
+                <label for="movieKeyword">Mood / Keyword</label>
+                <input id="movieKeyword" type="text" placeholder="e.g. inspiring, action, plot twist" />
+              </div>
+              <div class="movie-form-actions">
+                <button class="btn btn-primary" id="recommendMovieBtn" type="submit" disabled>Recommend a Title</button>
+                <button class="btn" id="surpriseMovieBtn" type="button" disabled>Surprise Me</button>
+              </div>
+            </form>
+            <p id="movieRecommendStatus" class="movie-status">Load your dataset to start recommending.</p>
+
+            <article id="movieResult" class="movie-result" hidden></article>
+            <section id="movieAlternativesWrap" class="movie-alt-wrap" hidden>
+              <h3>Other Good Picks</h3>
+              <ul id="movieAlternatives" class="movie-alt-list"></ul>
+            </section>
+          </section>
+
+          <hr class="project-divider" />
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="movieRecommender.js"></script>
+</body>
+</html>

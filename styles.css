@@ -1131,6 +1131,18 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   border-color: #8f7bdf;
 }
 
+.tag-csv {
+  background: #2f3a24;
+  color: #e6f5d6;
+  border-color: #7ea85b;
+}
+
+.tag-recommender {
+  background: #283347;
+  color: #dbe8ff;
+  border-color: #5e7fb8;
+}
+
 .emotion-panel {
   display: grid;
   gap: 0.9rem;
@@ -1922,6 +1934,164 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   font-size: 0.82rem;
 }
 
+.movie-panel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.movie-type-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.36rem;
+  margin-top: -0.18rem;
+}
+
+.movie-type-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.14rem 0.52rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  background: color-mix(in srgb, var(--panel-alt) 82%, transparent);
+  color: var(--text);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.movie-data-box,
+.movie-recommender-box {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.movie-note {
+  margin: 0;
+  font-size: 0.84rem;
+}
+
+.movie-dataset-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.movie-file-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0.46rem 0.62rem;
+  border: 1px dashed var(--line-soft);
+  background: var(--panel-alt);
+  color: var(--text);
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.66rem;
+}
+
+.movie-file-label:hover {
+  border-color: var(--line);
+}
+
+.movie-file-input {
+  display: none;
+}
+
+.movie-status {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.movie-status.error {
+  color: #ff8d8d;
+}
+
+.movie-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.56rem 0.62rem;
+}
+
+.movie-field {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.movie-field-wide {
+  grid-column: 1 / -1;
+}
+
+.movie-field label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.02em;
+}
+
+.movie-field input,
+.movie-field select {
+  width: 100%;
+  background: var(--panel-alt);
+  color: var(--text);
+  border: 1px solid var(--line-soft);
+  padding: 0.46rem 0.54rem;
+  font-size: 0.88rem;
+}
+
+.movie-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.58rem;
+  flex-wrap: wrap;
+}
+
+.movie-result {
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--panel-alt) 80%, transparent);
+  padding: 0.72rem;
+  display: grid;
+  gap: 0.38rem;
+}
+
+.movie-result h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.movie-result-meta {
+  margin: 0;
+  display: flex;
+  gap: 0.45rem 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--text);
+}
+
+.movie-result-genres,
+.movie-result-overview {
+  margin: 0;
+}
+
+.movie-alt-wrap {
+  display: grid;
+  gap: 0.36rem;
+}
+
+.movie-alt-wrap h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.movie-alt-list {
+  margin: 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.22rem;
+}
+
 .achievement-panel {
   display: grid;
   gap: 0.85rem;
@@ -2210,6 +2380,10 @@ body[data-theme="light"] .icon-btn-linked:hover img {
     grid-template-columns: 1fr;
   }
 
+  .movie-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .card-grid .pixel-card {
     grid-template-columns: minmax(95px, 120px) minmax(190px, 1fr);
     gap: 0.3rem 0.78rem;
@@ -2274,6 +2448,10 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
   .hero {
     padding-top: 3.1rem;
+  }
+
+  .movie-form {
+    grid-template-columns: 1fr;
   }
 
   .card-grid .pixel-card {
