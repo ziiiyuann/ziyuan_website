@@ -2085,6 +2085,13 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   color: var(--muted);
 }
 
+.medical-caveat {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 .movie-form {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
