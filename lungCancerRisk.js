@@ -167,7 +167,7 @@ function chanceBand(chance) {
 function renderResult(payload) {
   if (!lungResult) return;
   lungResult.innerHTML = `
-    <h3>Estimated Chance: ${payload.estimatedChance.toFixed(1)}%</h3>
+    <h3>Estimated Similarity: ${payload.estimatedChance.toFixed(1)}%</h3>
     <p class="movie-result-meta">
       <span>Band: ${payload.band}</span>
       <span>Dataset Percentile: ${payload.percentile.toFixed(1)}%</span>

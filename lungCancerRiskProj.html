@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lung Cancer Risk Estimator | Ziyuan Wang</title>
+  <title>Lung Cancer Similarity Estimator | Ziyuan Wang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -25,7 +25,7 @@
         <div class="title-chip">Fun Project</div>
         <article class="panel reveal movie-panel">
           <p class="card-meta">Self</p>
-          <h1>Lung Cancer Risk Estimator (2015 - 2025)</h1>
+          <h1>Lung Cancer Similarity Estimator (2015 - 2025)</h1>
           <p>
             A rough profile-based estimator using lung cancer patient attributes.
             It is a learning project and not medical advice.
@@ -35,7 +35,7 @@
             <h2>Workflow</h2>
             <ul class="impact-list">
               <li>Load and parse <code>lung_cancer_dataset.csv</code> with risk-factor columns.</li>
-              <li>Convert user inputs into a weighted risk score (smoking, exposure, symptoms, demographics).</li>
+              <li>Convert user inputs into a weighted similarity score (smoking, exposure, symptoms, demographics).</li>
               <li>Calibrate score against the dataset to compute percentile and a rough chance band.</li>
               <li>Return an estimate, confidence label, and plain-language interpretation.</li>
             </ul>
@@ -65,7 +65,7 @@
           <hr class="project-divider" />
 
           <section class="movie-recommender-box">
-            <h2>Estimate My Risk Profile</h2>
+            <h2>Estimate My Similarity Profile</h2>
             <p class="movie-note">Fill what you know. Leave the rest at defaults.</p>
             <form id="lungForm" class="movie-form">
               <div class="movie-field">
@@ -152,7 +152,7 @@
                 </select>
               </div>
               <div class="movie-form-actions">
-                <button class="btn btn-primary" id="estimateRiskBtn" type="submit" disabled>Estimate Risk</button>
+                <button class="btn btn-primary" id="estimateRiskBtn" type="submit" disabled>Estimate Similarity</button>
               </div>
             </form>
             <p id="lungEstimateStatus" class="movie-status">Load your dataset to begin.</p>
