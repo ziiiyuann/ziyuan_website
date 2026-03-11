@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STAT3609 Project | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">School Project</div>
+        <article class="panel reveal movie-panel">
+          <p class="card-meta">HKU | STAT3609</p>
+          <h1>Examining Lunar New Year Effects on the Hong Kong Stock Market (2015-2025)</h1>
+          <p>
+            Team-based statistical study on whether the Lunar New Year (LNY) period creates measurable return and risk anomalies in the Hang Seng Index.
+            The project focused on pre-LNY, post-LNY, and baseline windows.
+          </p>
+
+          <section class="movie-data-box">
+            <h2>What We Did</h2>
+            <ul class="impact-list">
+              <li>Collected HSI market data from Yahoo Finance and aligned 2015-2025 LNY windows.</li>
+              <li>Tagged each day as <code>Pre-LNY</code>, <code>Post-LNY</code>, or <code>Baseline</code>.</li>
+              <li>Computed simple/log returns and risk metrics: volatility, VaR(95%), CTE(95%), Sharpe ratio.</li>
+              <li>Ran statistical tests: two-sample t-tests (means), Levene's test (variances), Jarque-Bera normality, and dummy-variable regression.</li>
+              <li>Compared findings against prior LNY literature in Hong Kong and East Asian markets.</li>
+            </ul>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="movie-data-box">
+            <h2>Dataset and Scope</h2>
+            <ul class="impact-list">
+              <li>Period: <strong>Sep 1, 2015 to Sep 1, 2025</strong>.</li>
+              <li>Core series: Hang Seng Index daily price data.</li>
+              <li>Sample sizes: Pre-LNY <strong>39</strong>, Post-LNY <strong>17</strong>, Baseline <strong>2402</strong>.</li>
+            </ul>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="movie-data-box">
+            <h2>Key Results</h2>
+            <div class="stat-grid">
+              <article class="stat-card">
+                <h3>Risk/Return Profile</h3>
+                <ul class="impact-list">
+                  <li>Pre-LNY average return (<code>0.00271</code>) was above baseline (<code>0.00013</code>).</li>
+                  <li>Post-LNY showed lower return and higher volatility versus baseline.</li>
+                  <li>Combined LNY window had higher average returns but deeper downside tail risk than baseline.</li>
+                </ul>
+              </article>
+              <article class="stat-card">
+                <h3>Sharpe Ratio</h3>
+                <ul class="impact-list">
+                  <li>Pre-LNY: <code>0.1939</code> (best risk-adjusted performance).</li>
+                  <li>Post-LNY: <code>-0.0071</code> (risk not compensated by return).</li>
+                  <li>LNY Avg: <code>0.1163</code>, Baseline: <code>0.0005</code>.</li>
+                </ul>
+              </article>
+            </div>
+            <div class="stat-grid">
+              <article class="stat-card">
+                <h3>Hypothesis Testing</h3>
+                <ul class="impact-list">
+                  <li>Mean return tests (t-tests): no pair was statistically significant at 5%.</li>
+                  <li>Variance tests (Levene): no pair was statistically significant at 5%.</li>
+                  <li>Regression dummy coefficients for Pre/Post-LNY were not significant.</li>
+                </ul>
+              </article>
+              <article class="stat-card">
+                <h3>Interpretation</h3>
+                <ul class="impact-list">
+                  <li>Descriptive/economic patterns align with LNY holiday effect literature.</li>
+                  <li>Formal significance was weak mainly due to very small LNY window samples.</li>
+                  <li>Conclusion: evidence is suggestive, but not statistically conclusive in this setup.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="movie-data-box">
+            <h2>Limitations and Next Steps</h2>
+            <ul class="impact-list">
+              <li>Severe sample imbalance reduced statistical power (Type II error risk).</li>
+              <li>Baseline returns were strongly non-normal, weakening parametric test reliability.</li>
+              <li>Simple tests/regression may miss dynamic effects (autocorrelation, volatility clustering, asymmetry).</li>
+              <li>Next step: use GARCH/TGARCH/EGARCH frameworks for conditional volatility effects.</li>
+            </ul>
+          </section>
+
+          <hr class="project-divider" />
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

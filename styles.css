@@ -1216,6 +1216,30 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   border-color: #cf7878;
 }
 
+.tag-stats {
+  background: #24384f;
+  color: #d8edff;
+  border-color: #5d8fc0;
+}
+
+.tag-hypothesis {
+  background: #2f3a24;
+  color: #e6f5d6;
+  border-color: #7ea85b;
+}
+
+.tag-regression {
+  background: #2a243f;
+  color: #e1dbff;
+  border-color: #8f7bdf;
+}
+
+.tag-riskfin {
+  background: #3e2b1f;
+  color: #ffe8cf;
+  border-color: #d39a61;
+}
+
 .emotion-panel {
   display: grid;
   gap: 0.9rem;
@@ -2218,6 +2242,26 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   font-size: 0.95rem;
 }
 
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.62rem;
+  margin-top: 0.62rem;
+}
+
+.stat-card {
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--panel-alt) 82%, transparent);
+  padding: 0.62rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
 .movie-alt-list {
   margin: 0;
   padding-left: 1rem;
@@ -2515,6 +2559,10 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
   .movie-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
   }
 
   .card-grid .pixel-card {
