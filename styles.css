@@ -1209,10 +1209,11 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   border-color: #7ea85b;
 }
 
-.tag-recommender {
-  background: #283347;
-  color: #dbe8ff;
-  border-color: #5e7fb8;
+
+.tag-risk {
+  background: #452a2a;
+  color: #ffdedd;
+  border-color: #cf7878;
 }
 
 .emotion-panel {
@@ -2077,8 +2078,11 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   font-size: 0.86rem;
 }
 
-.movie-status.error {
-  color: #ff8d8d;
+
+.medical-disclaimer {
+  margin: 0.45rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
 }
 
 .movie-form {
@@ -2102,6 +2106,52 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   letter-spacing: 0.02em;
 }
 
+.info-tip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.28rem;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  line-height: 1;
+  color: var(--muted);
+  background: var(--panel-alt);
+  cursor: help;
+  position: relative;
+  vertical-align: middle;
+}
+
+.info-tip::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.48rem);
+  transform: translateX(-50%);
+  min-width: 200px;
+  max-width: 260px;
+  padding: 0.4rem 0.48rem;
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 0.68rem;
+  line-height: 1.38;
+  font-family: "IBM Plex Sans", sans-serif;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+  z-index: 30;
+}
+
+.info-tip:hover::after,
+.info-tip:focus-visible::after {
+  opacity: 1;
+}
+
 .movie-field input,
 .movie-field select {
   width: 100%;
@@ -2110,6 +2160,10 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   border: 1px solid var(--line-soft);
   padding: 0.46rem 0.54rem;
   font-size: 0.88rem;
+}
+
+.movie-field.field-disabled {
+  opacity: 0.62;
 }
 
 .movie-form-actions {
@@ -2547,3 +2601,4 @@ body[data-theme="light"] .icon-btn-linked:hover img {
     margin-top: 0.46rem;
   }
 }
+

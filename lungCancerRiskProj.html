@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lung Cancer Risk Estimator | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">Fun Project</div>
+        <article class="panel reveal movie-panel">
+          <p class="card-meta">Self</p>
+          <h1>Lung Cancer Risk Estimator (2015 - 2025)</h1>
+          <p>
+            A rough profile-based estimator using lung cancer patient attributes.
+            It is a learning project and not medical advice.
+          </p>
+
+          <section class="movie-data-box">
+            <h2>Workflow</h2>
+            <ul class="impact-list">
+              <li>Load and parse <code>lung_cancer_dataset.csv</code> with risk-factor columns.</li>
+              <li>Convert user inputs into a weighted risk score (smoking, exposure, symptoms, demographics).</li>
+              <li>Calibrate score against the dataset to compute percentile and a rough chance band.</li>
+              <li>Return an estimate, confidence label, and plain-language interpretation.</li>
+            </ul>
+            <p class="medical-disclaimer">
+              Disclaimer: This tool is for educational demo purposes only and is not a diagnosis.
+            </p>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="movie-data-box">
+            <h2>Dataset</h2>
+            <p class="movie-note">Default dataset path: <code>lung_cancer_dataset.csv</code></p>
+            <div class="movie-dataset-controls">
+              <button class="btn btn-primary" id="loadLungDataBtn" type="button">Load Dataset From Site</button>
+              <label class="movie-file-label" for="lungFileInput">
+                Or upload a CSV
+              </label>
+              <input id="lungFileInput" class="movie-file-input" type="file" accept=".csv,text/csv" />
+            </div>
+            <p id="lungDataStatus" class="movie-status">Dataset not loaded yet.</p>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="movie-recommender-box">
+            <h2>Estimate My Risk Profile</h2>
+            <p class="movie-note">Fill what you know. Leave the rest at defaults.</p>
+            <form id="lungForm" class="movie-form">
+              <div class="movie-field">
+                <label for="lungAge">Age</label>
+                <input id="lungAge" type="number" min="1" max="120" step="1" value="30" />
+              </div>
+              <div class="movie-field">
+                <label for="lungGender">Gender</label>
+                <select id="lungGender">
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="lungSmokingStatus">Smoking Status</label>
+                <select id="lungSmokingStatus">
+                  <option value="Never Smoked">Never Smoked</option>
+                  <option value="Former Smoker">Former Smoker</option>
+                  <option value="Current Smoker">Current Smoker</option>
+                </select>
+              </div>
+              <div class="movie-field" id="lungCigsPerDayField">
+                <label for="lungCigsPerDay">Cigarettes / Day</label>
+                <input id="lungCigsPerDay" type="number" min="0" max="100" step="1" value="0" />
+              </div>
+              <div class="movie-field" id="lungYearsSmokingField">
+                <label for="lungYearsSmoking">Years Smoking</label>
+                <input id="lungYearsSmoking" type="number" min="0" max="90" step="1" value="0" />
+              </div>
+              <div class="movie-field">
+                <label for="lungPollution">Air Pollution Exposure</label>
+                <select id="lungPollution">
+                  <option value="Low">Low</option>
+                  <option value="Moderate">Moderate</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="lungSecondhand">Secondhand Smoke</label>
+                <select id="lungSecondhand">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="lungFamily">Family History</label>
+                <select id="lungFamily">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="lungChronic">Chronic Lung Disease</label>
+                <select id="lungChronic">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="lungAsbestos">
+                  Asbestos Exposure
+                  <span class="info-tip" tabindex="0" aria-label="Asbestos info" data-tip="Asbestos is a mineral fiber once used in insulation and construction. Long-term inhalation is linked to lung disease and cancer.">i</span>
+                </label>
+                <select id="lungAsbestos">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="lungRadon">
+                  Radon Exposure
+                  <span class="info-tip" tabindex="0" aria-label="Radon info" data-tip="Radon is a radioactive gas that can build up indoors from soil. Breathing it over time increases lung cancer risk.">i</span>
+                </label>
+                <select id="lungRadon">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+              <div class="movie-field">
+                <label for="lungCoughBlood">Coughing Blood</label>
+                <select id="lungCoughBlood">
+                  <option value="No">No</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+              <div class="movie-form-actions">
+                <button class="btn btn-primary" id="estimateRiskBtn" type="submit" disabled>Estimate Risk</button>
+              </div>
+            </form>
+            <p id="lungEstimateStatus" class="movie-status">Load your dataset to begin.</p>
+
+            <article id="lungResult" class="movie-result" hidden></article>
+          </section>
+
+          <hr class="project-divider" />
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="lungCancerRisk.js"></script>
+</body>
+</html>
