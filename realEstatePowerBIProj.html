@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Estate Power BI Project | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TTSY2WKK6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-2TTSY2WKK6");
+  </script>
+</head>
+<body data-protected-project-page="real-estate-powerbi">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">Work Project</div>
+        <article class="panel powerbi-panel">
+          <p class="card-meta">ITLink</p>
+          <h1>Real Estate Power BI Project</h1>
+          <p>
+            Power BI dashboard project for weekly real estate KPI reporting. The workflow connects a SharePoint
+            folder of dated Excel snapshots to a PBIP data model, then refreshes dashboard views for vacancy,
+            arrears, leasing speed, and property-level attention flags.
+          </p>
+
+          <hr class="project-divider" />
+
+          <section class="powerbi-gallery" aria-label="Real estate Power BI dashboard screenshots">
+            <figure class="powerbi-shot">
+              <img src="assets/images/Real%20Estate%20%28zen%20residentials%29/Screenshot%202026-05-22%20095233.png" width="1520" height="974" alt="Executive Dashboard Power BI report screenshot" />
+              <figcaption>1. Executive Dashboard</figcaption>
+            </figure>
+            <figure class="powerbi-shot">
+              <img src="assets/images/Real%20Estate%20%28zen%20residentials%29/Screenshot%202026-05-22%20094752.png" width="1916" height="730" alt="Weekly KPI Excel summary sheet screenshot" />
+              <figcaption>2. Weekly KPI Excel Summary</figcaption>
+            </figure>
+            <figure class="powerbi-shot">
+              <img src="assets/images/Real%20Estate%20%28zen%20residentials%29/Screenshot%202026-05-22%20094805.png" width="1914" height="699" alt="Unit availability details worksheet screenshot" />
+              <figcaption>3. Unit Availability Details</figcaption>
+            </figure>
+            <figure class="powerbi-shot">
+              <img src="assets/images/Real%20Estate%20%28zen%20residentials%29/Screenshot%202026-05-22%20094832.png" width="1355" height="846" alt="Power BI data model relationship view screenshot" />
+              <figcaption>4. PBIP Data Model</figcaption>
+            </figure>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="project-doc-block" aria-labelledby="weekly-maintenance-workflow">
+            <h2 id="weekly-maintenance-workflow">Weekly Maintenance Workflow</h2>
+            <ol class="workflow-list">
+              <li>
+                <strong>Receive and rename the KPI file.</strong>
+                Rename the weekly Excel file from the real estate client using the <code>KPI_YYYY-MM-DD.xlsx</code> convention.
+              </li>
+              <li>
+                <strong>Upload the raw snapshot.</strong>
+                Place the workbook in the SharePoint Raw Data Files folder.
+              </li>
+              <li>
+                <strong>Refresh the PBIP project.</strong>
+                Open the PBIP project in Power BI Desktop and refresh the data model. The <code>fnGetAllFiles</code> function
+                automatically detects the new file, parses the snapshot date from the filename, and loads all six fact tables.
+              </li>
+              <li>
+                <strong>Spot-check the refreshed data.</strong>
+                Verify the new snapshot appears in the week selector slicer, confirm property counts and key KPI cards look
+                reasonable against the source file, and check for ingestion errors.
+              </li>
+              <li>
+                <strong>Review source-file structure.</strong>
+                Check for new or removed buildings, area reassignments, sheet additions/removals, or column layout shifts.
+                Determine whether any Power Query or DAX adjustments are needed. Most weeks, none are.
+              </li>
+              <li>
+                <strong>Apply model changes when required.</strong>
+                If the source file structure changed, update the model logic for items such as new area names, separator row
+                shifts, or column additions. Test after each change.
+              </li>
+              <li>
+                <strong>Generate the changelog.</strong>
+                Document what was added, any structural changes observed, and KPI movement from the previous snapshot.
+              </li>
+              <li>
+                <strong>Save and commit the PBIP files.</strong>
+                Commit the refreshed project files once the data, visuals, and changelog have been reviewed.
+              </li>
+            </ol>
+          </section>
+
+          <hr class="project-divider" />
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

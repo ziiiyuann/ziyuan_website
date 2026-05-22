@@ -128,18 +128,16 @@
           </div>
         </div>
         <div class="card-grid">
-          <article class="pixel-card reveal project-work project-censored">
-            <span class="censored-badge">Work-In-Progress</span>
+          <a class="pixel-card reveal project-work project-card-link" href="realEstatePowerBIProj.html" data-protected-project-link aria-haspopup="dialog" aria-label="Open Real Estate Power BI Project page">
             <p class="card-meta">ITLink</p>
-            <h3>IBM TM1 FP&A Performance Guarantee Period Maintanence</h3>
-            <p>  Assisted in rectifying any System Software breakdown arising from defects in the System Software 
-            codes for workflows, web services, batch jobs, System Software configurations, including the database, 
-            during the System Warranty Period</p>
+            <h3>Real Estate Power BI Project</h3>
+            <p>Built a Power BI real estate dashboard project with portfolio views, operating metrics, and financial performance summaries.</p>
             <div class="project-tags">
-              <span class="tag tag-tm1">IBM TM1</span>
-              <span class="tag tag-python">Python</span>
+              <span class="tag tag-powerbi">Power BI</span>
+              <span class="tag tag-excel">Excel</span>
+              <span class="tag tag-sql">SQL</span>
             </div>
-          </article>
+          </a>
           <article class="pixel-card reveal project-work project-censored">
             <span class="censored-badge">Work-In-Progress</span>
             <p class="card-meta">ITLink</p>
@@ -243,12 +241,29 @@
       <div class="container">
         <div class="title-chip">Latest Project/Achievement</div>
         <div class="panel reveal achievement-panel">
-          <p class="achievement-text">Hitting Diamond IV on Teamfight Tactics</p>
+          <p class="achievement-text">Hitting Diamond I on Teamfight Tactics (Set 16)</p>
         </div>
       </div>
     </section>
 
   </main>
+
+  <div class="password-modal" id="projectPasswordModal" hidden>
+    <div class="password-dialog" role="dialog" aria-modal="true" aria-labelledby="projectPasswordTitle" aria-describedby="projectPasswordHelp">
+      <p class="card-meta">Protected Project</p>
+      <h2 id="projectPasswordTitle">Enter Project Password</h2>
+      <p id="projectPasswordHelp">This project contains client-facing work samples. Enter the access password to continue.</p>
+      <form class="password-form" id="projectPasswordForm">
+        <label for="projectPasswordInput">Password</label>
+        <input id="projectPasswordInput" name="projectPasswordInput" type="password" autocomplete="current-password" />
+        <p class="password-error" id="projectPasswordError" aria-live="polite"></p>
+        <div class="password-actions">
+          <button class="btn" type="button" id="projectPasswordCancel">Cancel</button>
+          <button class="btn btn-primary" type="submit">Unlock</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container">

@@ -63,6 +63,10 @@ body::before {
   z-index: -1;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 .container {
   width: min(1060px, 92%);
   margin: 0 auto;
@@ -322,6 +326,10 @@ li {
   border-color: var(--line);
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .btn-primary {
   background: var(--btn-primary-bg);
   color: var(--btn-primary-text);
@@ -329,6 +337,77 @@ li {
 
 .btn-primary:hover {
   filter: brightness(0.95);
+}
+
+.password-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.password-modal[hidden] {
+  display: none;
+}
+
+.password-dialog {
+  width: min(430px, 100%);
+  background: linear-gradient(180deg, var(--panel-alt) 0%, var(--panel) 100%);
+  border: 1px solid var(--line-soft);
+  box-shadow: 4px 4px 0 var(--shadow);
+  padding: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.password-dialog h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.password-dialog p {
+  margin: 0;
+}
+
+.password-form {
+  display: grid;
+  gap: 0.46rem;
+}
+
+.password-form label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+}
+
+.password-form input {
+  width: 100%;
+  border: 1px solid var(--line-soft);
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  padding: 0.62rem 0.68rem;
+}
+
+.password-form input:focus {
+  outline: 2px solid color-mix(in srgb, var(--line) 52%, transparent);
+  outline-offset: 2px;
+}
+
+.password-error {
+  min-height: 1.2rem;
+  color: #ff8d8d;
+  font-size: 0.82rem;
+}
+
+.password-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .hero-icon-links {
@@ -2491,10 +2570,86 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   background: color-mix(in srgb, var(--panel-alt) 78%, transparent);
 }
 
+.powerbi-placeholder {
+  min-height: clamp(220px, 42vw, 430px);
+  border: 1px dashed color-mix(in srgb, var(--line-soft) 72%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--panel-alt) 86%, transparent), var(--panel));
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
 .powerbi-shot figcaption {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.7rem;
   color: var(--text);
+}
+
+.project-doc-block {
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--panel-alt) 82%, transparent);
+  padding: 0.82rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.project-doc-block h2 {
+  margin: 0;
+  font-size: 1rem;
+  scroll-margin-top: 96px;
+}
+
+.workflow-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: workflow-step;
+  display: grid;
+  gap: 0.56rem;
+}
+
+.workflow-list li {
+  counter-increment: workflow-step;
+  position: relative;
+  min-height: 2rem;
+  padding: 0.58rem 0.68rem 0.58rem 2.45rem;
+  border: 1px solid color-mix(in srgb, var(--line-soft) 58%, transparent);
+  background: color-mix(in srgb, var(--panel) 82%, transparent);
+  font-size: 0.88rem;
+  line-height: 1.52;
+}
+
+.workflow-list li::before {
+  content: counter(workflow-step, decimal-leading-zero);
+  position: absolute;
+  top: 0.6rem;
+  left: 0.68rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  color: var(--chip-text);
+  background: var(--chip-bg);
+  border: 1px solid var(--line-soft);
+  padding: 0.08rem 0.24rem;
+}
+
+.workflow-list strong {
+  display: block;
+  margin-bottom: 0.1rem;
+  color: var(--text);
+}
+
+.workflow-list code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82em;
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel-alt) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line-soft) 52%, transparent);
+  padding: 0.03rem 0.22rem;
 }
 
 .skill-list {

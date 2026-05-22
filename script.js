@@ -27,6 +27,97 @@ if (themeBtn) {
   });
 }
 
+const REAL_ESTATE_PROJECT_PASSWORD = "980907";
+const REAL_ESTATE_PROJECT_KEY = "real-estate-powerbi-unlocked";
+const isRealEstateProjectPage = document.body.dataset.protectedProjectPage === "real-estate-powerbi";
+
+if (isRealEstateProjectPage) {
+  // The unlock flag is a single-use pass: it's consumed the moment the
+  // protected page loads, so leaving and coming back always re-prompts.
+  const hasValidPass = sessionStorage.getItem(REAL_ESTATE_PROJECT_KEY) === "true";
+  sessionStorage.removeItem(REAL_ESTATE_PROJECT_KEY);
+  if (!hasValidPass) {
+    window.location.replace("index.html#projects");
+  }
+
+  // A back/forward (bfcache) restore doesn't re-run this script, so force
+  // a redirect when the page is shown from cache without a fresh password.
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      window.location.replace("index.html#projects");
+    }
+  });
+}
+
+const protectedProjectLink = document.querySelector("[data-protected-project-link]");
+const passwordModal = document.getElementById("projectPasswordModal");
+const passwordForm = document.getElementById("projectPasswordForm");
+const passwordInput = document.getElementById("projectPasswordInput");
+const passwordError = document.getElementById("projectPasswordError");
+const passwordCancel = document.getElementById("projectPasswordCancel");
+
+let protectedProjectHref = "";
+let passwordModalPreviousFocus = null;
+
+function openPasswordModal(targetHref) {
+  if (!passwordModal || !passwordInput || !passwordError) return;
+  protectedProjectHref = targetHref;
+  passwordModalPreviousFocus = document.activeElement;
+  passwordInput.value = "";
+  passwordError.textContent = "";
+  passwordModal.hidden = false;
+  document.body.classList.add("modal-open");
+  passwordInput.focus();
+}
+
+function closePasswordModal() {
+  if (!passwordModal) return;
+  passwordModal.hidden = true;
+  document.body.classList.remove("modal-open");
+  if (passwordModalPreviousFocus) {
+    passwordModalPreviousFocus.focus();
+  }
+}
+
+if (protectedProjectLink) {
+  protectedProjectLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    openPasswordModal(protectedProjectLink.href);
+  });
+}
+
+if (passwordForm && passwordInput && passwordError) {
+  passwordForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (passwordInput.value === REAL_ESTATE_PROJECT_PASSWORD) {
+      sessionStorage.setItem(REAL_ESTATE_PROJECT_KEY, "true");
+      window.location.href = protectedProjectHref || "realEstatePowerBIProj.html";
+      return;
+    }
+
+    passwordError.textContent = "Incorrect password. Please try again.";
+    passwordInput.select();
+  });
+}
+
+if (passwordCancel) {
+  passwordCancel.addEventListener("click", closePasswordModal);
+}
+
+if (passwordModal) {
+  passwordModal.addEventListener("click", (event) => {
+    if (event.target === passwordModal) {
+      closePasswordModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !passwordModal.hidden) {
+      closePasswordModal();
+    }
+  });
+}
+
 const menuBtn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
 
