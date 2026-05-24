@@ -27,15 +27,15 @@ if (themeBtn) {
   });
 }
 
-const REAL_ESTATE_PROJECT_PASSWORD = "980907";
-const REAL_ESTATE_PROJECT_KEY = "real-estate-powerbi-unlocked";
-const isRealEstateProjectPage = document.body.dataset.protectedProjectPage === "real-estate-powerbi";
+const PROTECTED_PROJECT_PASSWORD = "980907";
+const PROTECTED_PROJECT_KEY = "protected-project-unlocked";
+const isProtectedProjectPage = !!document.body.dataset.protectedProjectPage;
 
-if (isRealEstateProjectPage) {
+if (isProtectedProjectPage) {
   // The unlock flag is a single-use pass: it's consumed the moment the
   // protected page loads, so leaving and coming back always re-prompts.
-  const hasValidPass = sessionStorage.getItem(REAL_ESTATE_PROJECT_KEY) === "true";
-  sessionStorage.removeItem(REAL_ESTATE_PROJECT_KEY);
+  const hasValidPass = sessionStorage.getItem(PROTECTED_PROJECT_KEY) === "true";
+  sessionStorage.removeItem(PROTECTED_PROJECT_KEY);
   if (!hasValidPass) {
     window.location.replace("index.html#projects");
   }
@@ -49,7 +49,7 @@ if (isRealEstateProjectPage) {
   });
 }
 
-const protectedProjectLink = document.querySelector("[data-protected-project-link]");
+const protectedProjectLinks = document.querySelectorAll("[data-protected-project-link]");
 const passwordModal = document.getElementById("projectPasswordModal");
 const passwordForm = document.getElementById("projectPasswordForm");
 const passwordInput = document.getElementById("projectPasswordInput");
@@ -79,19 +79,19 @@ function closePasswordModal() {
   }
 }
 
-if (protectedProjectLink) {
-  protectedProjectLink.addEventListener("click", (event) => {
+protectedProjectLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
     event.preventDefault();
-    openPasswordModal(protectedProjectLink.href);
+    openPasswordModal(link.href);
   });
-}
+});
 
 if (passwordForm && passwordInput && passwordError) {
   passwordForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (passwordInput.value === REAL_ESTATE_PROJECT_PASSWORD) {
-      sessionStorage.setItem(REAL_ESTATE_PROJECT_KEY, "true");
-      window.location.href = protectedProjectHref || "realEstatePowerBIProj.html";
+    if (passwordInput.value === PROTECTED_PROJECT_PASSWORD) {
+      sessionStorage.setItem(PROTECTED_PROJECT_KEY, "true");
+      window.location.href = protectedProjectHref;
       return;
     }
 
