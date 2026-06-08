@@ -69,8 +69,8 @@
                   <p class="card-meta">Aug 2023 - May 2027</p>
                 </div>
                 <h4>Bachelor of Science - Business Analytics</h4>
-                <p class="card-sub">Penultimate Student</p>
-                <div class="study-progress" role="img" aria-label="Year of study progress: 2.5 out of 4">
+                <p class="card-sub">Final Year Student</p>
+                <div class="study-progress" role="img" aria-label="Year of study progress: 3 out of 4">
                   <span class="study-progress-fill"></span>
                 </div>
               </article>
@@ -87,13 +87,14 @@
           <div class="hero-experience">
             <h3>Employment History</h3>
             <div class="mini-experience-list">
-              <article class="job-card mini-job-card current-role">
+              <article class="job-card mini-job-card current-role is-clickable" role="button" tabindex="0" data-experience-modal-trigger="itlink" aria-haspopup="dialog" aria-label="View details of ITLink Business Solutions internship">
                 <div class="job-head">
-                  <p class="card-meta">Jan 2026 - Present</p>
+                  <p class="card-meta">Jan 2026 - July 2026</p>
                   <span class="current-badge">Current</span>
                 </div>
                 <h4>Application Developer (Intern)</h4>
                 <p class="card-sub">ITLink Business Solutions (Singapore)</p>
+                <span class="details-hint">Click to view details &rarr;</span>
               </article>
               <article class="job-card mini-job-card">
                 <div class="job-head">
@@ -247,6 +248,29 @@
     </section>
 
   </main>
+
+  <div class="info-modal" id="itlinkExperienceModal" hidden>
+    <div class="info-dialog" role="dialog" aria-modal="true" aria-labelledby="itlinkExperienceTitle">
+      <p class="card-meta">Jan 2026 - July 2026</p>
+      <h2 id="itlinkExperienceTitle">Application Developer (Intern)</h2>
+      <p class="card-sub">ITLink Business Solutions (Singapore)</p>
+      <ul class="info-list">
+        <li><strong>Power BI dashboards.</strong> Built dashboards for multiple clients - covering marketing analytics, a weekly real estate KPI dashboard with risk flagging, and a profit-and-loss migration mockup.</li>
+        <li><strong>Tableau to Power BI migration.</strong> Rebuilt three dashboards from scratch on Power BI, using the original Tableau versions as reference.</li>
+        <li><strong>Enterprise planning automation.</strong> Built and maintained automation pipelines on an IBM Planning Analytics platform - including data cube copies, access-controlled reporting cubes, and dimension restructuring. Diagnosed and fixed a multi-cube calculation bug.</li>
+        <li><strong>Multi-entity consolidation upload.</strong> Owned the consolidation upload for a 43-entity holdings group - built FX translation, intercompany eliminations, adjustment journals, and per-entity general ledger files across two reporting currencies.</li>
+        <li><strong>End-to-end test automation.</strong> Wrote automated tests covering 14+ pages of a finance SaaS product, surfacing multiple frontend bugs.</li>
+        <li><strong>Integrations R&amp;D.</strong> Prototyped and validated integrations between a finance SaaS product and 6 different accounting / CRM platforms.
+        <li><strong>Documentation &amp; proposals.</strong> Authored client deliverables - including a functional specifications document for a cloud re-architecture project, a tender compliance response, competitor analysis briefs, and a product pitch deck.</li>
+        <li><strong>Python tooling:</strong> (1) Built a script to inventory every IBM Planning Analytics DBRW / DBRA formula in a workbook into a deduplicated dependency report - replacing a legacy VBA equivalent. (2) Built web-scraping programs to extract data from external sites.</li>
+        <li><strong>Demo data engineering.</strong> Generated realistic multi-year demo datasets - synthetic Chart of Accounts, P&amp;L, Balance Sheet, and forecast / budget scenarios - to seed product demos.</li>
+        <li><strong>Training &amp; certifications.</strong> Completed Power BI, Tableau, and Microsoft Fabric courses, and earned Planful Onboarding, Fundamentals, and Implementation Essentials credentials.</li>
+      </ul>
+      <div class="info-modal-actions">
+        <button class="btn btn-primary" type="button" data-experience-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
 
   <div class="password-modal" id="projectPasswordModal" hidden>
     <div class="password-dialog" role="dialog" aria-modal="true" aria-labelledby="projectPasswordTitle" aria-describedby="projectPasswordHelp">

@@ -339,7 +339,8 @@ li {
   filter: brightness(0.95);
 }
 
-.password-modal {
+.password-modal,
+.info-modal {
   position: fixed;
   inset: 0;
   z-index: 80;
@@ -348,6 +349,102 @@ li {
   padding: 1.2rem;
   background: color-mix(in srgb, var(--bg) 70%, transparent);
   backdrop-filter: blur(6px);
+}
+
+.info-modal[hidden] {
+  display: none;
+}
+
+.info-dialog {
+  width: min(680px, 100%);
+  max-height: min(82vh, 760px);
+  overflow-y: auto;
+  background: linear-gradient(180deg, var(--panel-alt) 0%, var(--panel) 100%);
+  border: 1px solid var(--line-soft);
+  box-shadow: 4px 4px 0 var(--shadow);
+  padding: 1.25rem 1.35rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.info-dialog h2 {
+  margin: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: clamp(1.18rem, 1.4vw, 1.32rem);
+  line-height: 1.25;
+  letter-spacing: 0.004em;
+}
+
+.info-dialog > .card-meta {
+  margin: 0;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.86;
+}
+
+.info-dialog > .card-sub {
+  margin: 0 0 0.3rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.info-list {
+  list-style: square;
+  margin: 0.1rem 0 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.info-list li {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: color-mix(in srgb, var(--muted) 75%, var(--text) 25%);
+}
+
+.info-list li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.info-list code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.82rem;
+  padding: 0.04rem 0.3rem;
+  background: color-mix(in srgb, var(--panel-alt) 60%, transparent);
+  border: 1px solid var(--line-soft);
+}
+
+.info-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.job-card.is-clickable {
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.job-card.is-clickable:hover {
+  transform: translateY(-1px);
+}
+
+.job-card.is-clickable:focus-visible {
+  outline: 2px solid var(--accent, #6ee787);
+  outline-offset: 2px;
+}
+
+.details-hint {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.9;
 }
 
 .password-modal[hidden] {

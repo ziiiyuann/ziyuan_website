@@ -118,6 +118,58 @@ if (passwordModal) {
   });
 }
 
+const experienceModalTriggers = document.querySelectorAll("[data-experience-modal-trigger]");
+let experienceModalPreviousFocus = null;
+
+function openExperienceModal(modal) {
+  if (!modal) return;
+  experienceModalPreviousFocus = document.activeElement;
+  modal.hidden = false;
+  document.body.classList.add("modal-open");
+  const closeBtn = modal.querySelector("[data-experience-modal-close]");
+  if (closeBtn) closeBtn.focus();
+}
+
+function closeExperienceModal(modal) {
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.classList.remove("modal-open");
+  if (experienceModalPreviousFocus && typeof experienceModalPreviousFocus.focus === "function") {
+    experienceModalPreviousFocus.focus();
+  }
+}
+
+experienceModalTriggers.forEach((trigger) => {
+  const targetId = `${trigger.dataset.experienceModalTrigger}ExperienceModal`;
+  const modal = document.getElementById(targetId);
+  if (!modal) return;
+
+  const openHandler = (event) => {
+    event.preventDefault();
+    openExperienceModal(modal);
+  };
+
+  trigger.addEventListener("click", openHandler);
+  trigger.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openExperienceModal(modal);
+    }
+  });
+
+  modal.querySelectorAll("[data-experience-modal-close]").forEach((btn) => {
+    btn.addEventListener("click", () => closeExperienceModal(modal));
+  });
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeExperienceModal(modal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) closeExperienceModal(modal);
+  });
+});
+
 const menuBtn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
 
