@@ -1143,8 +1143,8 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
 .card-grid .pixel-card > p:not(.card-meta) {
   margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.52;
+  font-size: 0.82rem;
+  line-height: 1.5;
   color: color-mix(in srgb, var(--muted) 90%, var(--text) 10%);
 }
 
@@ -2823,7 +2823,7 @@ body[data-theme="light"] .icon-btn-linked:hover img {
   }
 
   .card-grid .pixel-card > p:not(.card-meta) {
-    font-size: 0.87rem;
+    font-size: 0.81rem;
   }
 }
 
@@ -2884,8 +2884,8 @@ body[data-theme="light"] .icon-btn-linked:hover img {
 
   .card-grid .pixel-card > p:not(.card-meta) {
     margin: 0;
-    font-size: 0.88rem;
-    line-height: 1.52;
+    font-size: 0.82rem;
+    line-height: 1.5;
   }
 
   .card-grid .pixel-card .project-tags {

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IBM TM1 Financial Analysis &amp; Planning | Ziyuan Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2TTSY2WKK6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-2TTSY2WKK6");
+  </script>
+</head>
+<body data-protected-project-page="tm1-financial-planning">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Ziyuan Wang</a>
+      <div class="header-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle color theme">Theme: Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="title-chip">Work Project</div>
+        <article class="panel powerbi-panel">
+          <p class="card-meta">ITLink</p>
+          <h1>IBM TM1 Financial Analysis &amp; Planning</h1>
+          <p>
+            A walkthrough of how a typical IBM TM1 engagement runs end-to-end. Clients send through an
+            annex of requested changes or bug reports, and the work involves translating those into TI
+            processes inside TM1, validating the affected cube data, and updating any Excel templates
+            that the client uses to upload data into - or pull data out of - the model.
+          </p>
+
+          <hr class="project-divider" />
+
+          <section class="project-doc-block" aria-labelledby="engagement-overview">
+            <h2 id="engagement-overview">Engagement Workflow</h2>
+            <ol class="workflow-list">
+              <li>
+                <strong>Receive the client annex.</strong>
+                Client sends an instruction sheet listing the changes, enhancements, or bugs to address - usually
+                referencing specific templates, tabs, accounts, and cubes by name.
+              </li>
+              <li>
+                <strong>Build / update TM1 processes.</strong>
+                Implement the requested logic inside TM1 using TurboIntegrator (TI) processes - creating new
+                dimension elements, updating rules, and writing back to the affected cubes.
+              </li>
+              <li>
+                <strong>Validate against cube data.</strong>
+                Open the affected cube views in IBM Planning Analytics, run the process, and inspect the resulting
+                values against the spec to confirm the data lands correctly.
+              </li>
+              <li>
+                <strong>Update the linked Excel templates.</strong>
+                Adjust the client&apos;s Excel templates - the upload sheets and viewing sheets that connect to TM1
+                via Planning Analytics for Excel - so the new fields, columns, or sections are reflected.
+              </li>
+            </ol>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="project-doc-block" aria-labelledby="step-annex">
+            <h2 id="step-annex">1. Client Annex / Instructions</h2>
+            <p>
+              Each engagement starts with an annex from the client. It lists the requested changes line by line,
+              flags any open questions in red, and references the templates, tabs, and accounts that need to be
+              updated. The annex is the source of truth for the scope of work.
+            </p>
+            <figure class="powerbi-shot">
+              <img src="assets/images/IBM%20TM1/Annex%20Instructions.png" alt="Excerpt of a client annex listing requested template and cube changes" />
+              <figcaption>Excerpt of a client annex - itemised change requests with notes in red</figcaption>
+            </figure>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="project-doc-block" aria-labelledby="step-process">
+            <h2 id="step-process">2. Building TM1 Processes</h2>
+            <p>
+              The annex items are translated into TurboIntegrator (TI) processes inside TM1. Each process handles
+              a specific change - creating new accounts, copying data between cubes, restructuring dimensions, or
+              writing derived values back into a target cube.
+            </p>
+            <figure class="powerbi-shot">
+              <img src="assets/images/IBM%20TM1/IBM%20TM1%20Process.png" alt="IBM Planning Analytics process editor showing a TurboIntegrator script" />
+              <figcaption>TurboIntegrator process editor - scripting the logic for a requested change</figcaption>
+            </figure>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="project-doc-block" aria-labelledby="step-cube">
+            <h2 id="step-cube">3. Validating Cube Data</h2>
+            <p>
+              After running the process, the affected cube view is opened in IBM Planning Analytics and the data is
+              checked against the annex spec - confirming the new dimension elements appear, the calculated values
+              are correct, and nothing unrelated has been broken in the process.
+            </p>
+            <figure class="powerbi-shot">
+              <img src="assets/images/IBM%20TM1/IBM%20TM1%20Cube%20Example.png" alt="IBM Planning Analytics cube view showing budget data across dimensions" />
+              <figcaption>Cube view in IBM Planning Analytics - validating output values after a process run</figcaption>
+            </figure>
+          </section>
+
+          <hr class="project-divider" />
+
+          <section class="project-doc-block" aria-labelledby="step-excel">
+            <h2 id="step-excel">4. Updating the Excel Templates</h2>
+            <p>
+              Most clients also interact with TM1 through Excel templates - upload sheets where end users enter
+              budget data and viewing sheets that pull cube values back out. When the underlying model changes,
+              the templates need matching updates so the data flows in both directions stay consistent. 
+              These can either be full DBRW (Database Retrieve Wide Area Network) formula changes, VBA/PAfe (IBM Planning Analytics for Excel) action button process changes, or simple visual column/row updates.
+            </p>
+            <figure class="powerbi-shot">
+              <img src="assets/images/IBM%20TM1/Client%27s%20Excel%20Template.png" alt="Client Excel template with multiple tabs for sending and viewing TM1 cube data" />
+              <figcaption>Client Excel template - tabs for sending data to TM1 and viewing cube output</figcaption>
+            </figure>
+          </section>
+
+          <hr class="project-divider" />
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="index.html#projects">Back to Projects</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p id="year"></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
